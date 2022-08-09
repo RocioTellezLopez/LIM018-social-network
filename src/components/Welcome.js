@@ -2,9 +2,9 @@
 import { onNavigate } from '../main.js';
 
 export const Welcome = () => {
-  const HomeDiv = document.createElement('div');
-  HomeDiv.className = 'homeDiv';
-  HomeDiv.id = 'welcome';
+  const homeDiv = document.createElement('div');
+  homeDiv.className = 'homeDiv';
+  homeDiv.id = 'welcome';
 
   const imgFood = document.createElement('img');
   imgFood.src = '../img/heather-food.jpg';
@@ -32,12 +32,12 @@ export const Welcome = () => {
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
   buttonLogin.addEventListener('click', () => onNavigate('/login'));
 
-  HomeDiv.appendChild(imgFood);
-  HomeDiv.appendChild(welcomeDiv);
+  homeDiv.appendChild(imgFood);
+  homeDiv.appendChild(welcomeDiv);
   welcomeDiv.appendChild(titleLogo);
   buttonDiv.appendChild(buttonRegister);
   buttonDiv.appendChild(buttonLogin);
   welcomeDiv.appendChild(buttonDiv);
 
-  return HomeDiv;
+  return homeDiv;
 };
