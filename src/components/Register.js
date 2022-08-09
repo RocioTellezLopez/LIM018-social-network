@@ -24,10 +24,10 @@ export const Register = () => {
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Ingresa tu contraseña';
 
-  const buttonSignUp = document.createElement('input');
-  buttonSignUp.type = 'button';
-  buttonSignUp.value = 'Registrarse';
-  buttonSignUp.id = 'buttonSignUp';
+  const buttonRegister = document.createElement('input');
+  buttonRegister.type = 'button';
+  buttonRegister.value = 'Registrarse';
+  buttonRegister.id = 'buttonRegister';
 
   const textLogin = document.createElement('p');
   textLogin.textContent = 'Ya tengo una cuenta';
@@ -40,9 +40,10 @@ export const Register = () => {
   formLogin.appendChild(inputName);
   formLogin.appendChild(inputMail);
   formLogin.appendChild(inputPassword);
-  formLogin.appendChild(buttonSignUp);
+  formLogin.appendChild(buttonRegister);
   HomeDiv.appendChild(formLogin);
   HomeDiv.appendChild(textLogin);
   textLogin.appendChild(backLogin);
+  
   return HomeDiv;
 };
