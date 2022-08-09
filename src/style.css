@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+}
+
+.homeDiv {
+    height: 100vh;
+    margin: auto;
+    background:  hsl(130, 90%, 75%) url('./img/food-background.png');
+    background-blend-mode: lighten;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.titleLogo {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bolder;
+    color: #14A508;
+    padding: 100px 50px
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    width: 260px;
+    height: 40px;
+    margin: 0.5rem auto;
+    padding-left: 2rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgb(125, 118, 118);
+    border-radius: 10px;
+}
+
+#buttonSignIn, #buttonSignUp {
+    margin-top: 2rem;
+    padding-left: 0;
+    background-color: #14A508;
+    border-color: #14A508;
+    color: rgb(255, 255, 255);
+}
+
+.textRegister, .textLogin{
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.textRegister a, .textLogin a {
+    font-size: 0.9rem;
+    margin-left: 0.4rem;
+    color: rgb(15, 58, 169);
+}
+
+@media only screen and (min-width: 768px) {
+    .homeDiv {
+        /* background: url('./img/food-backgroundDesktop.png'); */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
