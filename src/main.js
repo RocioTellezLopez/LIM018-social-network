@@ -1,5 +1,7 @@
 // Este es el punto de entrada de tu aplicacion
 // eslint-disable-next-line import/no-cycle
+import { Welcome } from './components/Welcome.js';
+// eslint-disable-next-line import/no-cycle
 import { Home } from './components/Home.js';
 // eslint-disable-next-line import/no-cycle
 import { Register } from './components/Register.js';
@@ -9,9 +11,10 @@ import { Login } from './components/Login.js';
 const rootDiv = document.getElementById('root');
 
 const routes = {
-  '/': Home,
+  '/': Welcome,
   '/register': Register,
   '/login': Login,
+  '/home': Home,
 };
 
 export const onNavigate = (pathname) => {
