@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
+import { createUserWithEmail } from '../firebase/auth.js';
 
 export const Register = () => {
   const HomeDiv = document.createElement('div');
@@ -35,6 +36,14 @@ export const Register = () => {
   const backLogin = document.createElement('a');
   backLogin.textContent = 'Inicia Sesión';
   backLogin.addEventListener('click', () => onNavigate('/login'));
+
+  buttonRegister.addEventListener('click', () => {
+    const email = inputMail.value;
+    const password = inputPassword.value;
+
+    createUserWithEmail(email, password);
+  });
+
 
   HomeDiv.appendChild(titleLogo);
   formLogin.appendChild(inputName);
