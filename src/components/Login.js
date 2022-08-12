@@ -1,9 +1,6 @@
 /* eslint-disable import/no-cycle */
-/* import { GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
-import { auth, provider } from '../firebase/auth.js'; */
 import { signInWithGoogle, signInWithEmail } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
-// import { signInWithGoogle } from '../firebase/auth.js';
 
 export const Login = () => {
   const HomeDiv = document.createElement('div');
@@ -39,16 +36,7 @@ export const Login = () => {
   // buttonHome.textContent = 'Regresar al home';
 
   buttonLoginGoogle.addEventListener('click', () => {
-
     signInWithGoogle();
-  
-    /* signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log('sign in');
-      })
-      .catch((err) => {
-        console.log(err);
-      }); */
   });
 
   buttonLogin.addEventListener('click', () => {
