@@ -13,7 +13,7 @@ body {
 .homeDiv {
     height: 100vh;
     margin: auto;
-    background:  hsl(130, 90%, 75%) url('./img/food-background.png');
+    background:  hsl(130, 100%, 70%) url('./img/food-background.png');
     background-blend-mode: lighten;
     background-size: cover;
     background-repeat: no-repeat;
@@ -24,7 +24,7 @@ body {
 }
 
 #welcome {
-    background:  hsl(0, 0%, 60%) url('./img/heather-food.jpg');
+    background:  hsl(0, 0%, 70%) url('./img/heather-food.jpg');
     background-blend-mode: lighten;
     background-size: cover;
     background-repeat: no-repeat;
@@ -35,12 +35,27 @@ body {
     padding: 3.5rem;
 }
 
+.imgLogoDiv, #imgLogo {
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+
+.logoTitleDiv {
+    padding: 100px 50px;
+    display: flex;
+    align-items: center;
+}
 .titleLogo {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    font-family: 'Chicle';
     text-align: center;
     font-weight: bolder;
-    color: #14A508;
-    padding: 100px 50px;
+    color: #1ed760;
+}
+
+#titleWelcome {
+    color: hsl(141, 76%, 43%);
 }
 
 .formLogin {
@@ -62,10 +77,12 @@ form input, button {
 #buttonLogin, #buttonRegister, #buttonPublication {
     margin-top: 2rem;
     padding-left: 0;
-    background-color: #14A508;
-    border-color: #14A508;
+    background-color: #1ed760;
+    border: none;
     color: rgb(255, 255, 255);
     cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .textRegister, .textLogin{
@@ -160,7 +177,6 @@ form input, button {
     position: fixed;
     bottom: 0;
     left: 0;
-
 }
 
 
