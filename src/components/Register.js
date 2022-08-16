@@ -35,15 +35,19 @@ export const Register = () => {
   textLogin.className = 'textLogin';
   const backLogin = document.createElement('a');
   backLogin.textContent = 'Inicia Sesión';
+  
   backLogin.addEventListener('click', () => onNavigate('/login'));
 
   buttonRegister.addEventListener('click', () => {
     const email = inputMail.value;
     const password = inputPassword.value;
 
-    createUserWithEmail(email, password);
+    createUserWithEmail(email, password)
+      .then((userCredential) => {
+        console.log('Registro exitoso');
+        onNavigate('/login');
+      });
   });
-
 
   HomeDiv.appendChild(titleLogo);
   formLogin.appendChild(inputName);
