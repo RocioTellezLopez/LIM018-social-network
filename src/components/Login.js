@@ -6,9 +6,20 @@ export const Login = () => {
   const HomeDiv = document.createElement('div');
   HomeDiv.className = 'homeDiv';
 
+  /* ---------- */
+  const logoTitleDiv = document.createElement('div');
+  logoTitleDiv.className = 'logoTitleDiv';
+  const imgLogoDiv = document.createElement('div');
+  imgLogoDiv.className = 'imgLogoDiv';
+  const imgLogo = document.createElement('img');
+  imgLogo.src = '../img/comida-sana-green.png';
+  imgLogo.id = 'imgLogo';
+
   const titleLogo = document.createElement('h1');
   titleLogo.textContent = 'HEALTHY FOOD LOVERS';
   titleLogo.className = 'titleLogo';
+
+  /* ---------- */
 
   const formLogin = document.createElement('form');
   formLogin.className = 'formLogin';
@@ -56,7 +67,11 @@ export const Login = () => {
       });
   });
 
-  HomeDiv.appendChild(titleLogo);
+  imgLogoDiv.appendChild(imgLogo);
+  logoTitleDiv.appendChild(imgLogoDiv);
+  logoTitleDiv.appendChild(titleLogo);
+  HomeDiv.appendChild(logoTitleDiv);
+
   formLogin.appendChild(buttonLoginGoogle);
   formLogin.appendChild(inputMail);
   formLogin.appendChild(inputPassword);
