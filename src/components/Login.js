@@ -33,7 +33,10 @@ export const Login = () => {
   buttonLogin.id = 'buttonLogin';
 
   buttonLoginGoogle.addEventListener('click', () => {
-    signInWithGoogle();
+    signInWithGoogle()
+      .then((userCredential) => {
+        onNavigate('/home');
+      })
   });
 
   buttonLogin.addEventListener('click', () => {
