@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -44,8 +45,12 @@ export const signInWithGoogle = () => signInWithPopup(auth, provider);
 
 /* ---------- Firebase Auth - createUserWithEmailAndPassword ---------- */
 
-export const createUserWithEmail = (email, password) => createUserWithEmailAndPassword(auth, email, password)
+export const createUserWithEmail = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 
 /* ---------- Firebase Auth - signInWithEmailAndPassword ---------- */
 
 export const signInWithEmail = (email, password) =>  signInWithEmailAndPassword(auth, email, password)
+
+/* ---------- Firebase Auth - signOut ---------- */
+
+export const signOutLogin = () => signOut(auth);
