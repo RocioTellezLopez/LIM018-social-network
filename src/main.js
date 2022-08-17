@@ -11,6 +11,12 @@ import { Login } from './components/Login.js';
 const rootDiv = document.getElementById('root');
 
 const routes = {
+  /* route github pages */
+  '/LIM018-social-network/src': Welcome,
+  '/LIM018-social-network/src/register': Register,
+  '/LIM018-social-network/src/login': Login,
+  '/LIM018-social-network/src/home': Home,
+  /* route localhost */
   '/': Welcome,
   '/register': Register,
   '/login': Login,
@@ -31,8 +37,13 @@ export const onNavigate = (pathname) => {
 };
 const component = routes[window.location.pathname];
 
+// console.log(window.location.pathname);
+console.log(window.location);
+
+console.log(component);
+console.log(component());
 window.onpopstate = () => {
   rootDiv.appendChild(component());
 };
-
+console.log(component);
 rootDiv.appendChild(component());
