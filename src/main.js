@@ -38,12 +38,12 @@ export const onNavigate = (pathname) => {
 const component = routes[window.location.pathname];
 
 // console.log(window.location.pathname);
-// console.log(window.location);
+console.log(window.location);
 
-// console.log(component);
-// console.log(component());
+console.log(component);
+console.log(component());
 window.onpopstate = () => {
   rootDiv.appendChild(component());
 };
-// console.log(component);
+console.log(component);
 rootDiv.appendChild(component());
