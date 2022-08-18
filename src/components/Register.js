@@ -41,7 +41,11 @@ export const Register = () => {
     const email = inputMail.value;
     const password = inputPassword.value;
 
-    createUserWithEmail(email, password);
+    createUserWithEmail(email, password)
+      .then((userCredential) =>{
+        console.log('Registro exitoso')
+        onNavigate('/login');
+      });
   });
 
 
