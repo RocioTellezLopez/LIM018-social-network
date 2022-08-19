@@ -8,8 +8,6 @@ import { Register } from './components/Register.js';
 // eslint-disable-next-line import/no-cycle
 import { Login } from './components/Login.js';
 
-const rootDiv = document.getElementById('root');
-
 const routes = {
   /* route github pages */
   '/LIM018-social-network/src': Welcome,
@@ -24,6 +22,7 @@ const routes = {
 };
 
 export const onNavigate = (pathname) => {
+  const rootDiv = document.getElementById('root');
   window.history.pushState(
     {},
     pathname,
@@ -37,15 +36,15 @@ export const onNavigate = (pathname) => {
 };
 // const component = routes[window.location.pathname];
 
-// console.log(window.location.pathname);
-console.log(window.location);
-
-// console.log(component);
-// console.log(component());
 window.onpopstate = () => {
+  const rootDiv = document.getElementById('root');
   // rootDiv.appendChild(component());
   rootDiv.appendChild(routes[window.location.pathname]());
 };
-// console.log(component);
-// rootDiv.appendChild(component());
-rootDiv.appendChild(routes[window.location.pathname]());
+
+window.addEventListener('init', () => {
+  const rootDiv = document.getElementById('root');
+  rootDiv.appendChild(routes[window.location.pathname]());
+});
+
+// Que la funcion onNavegate sea independiente de roodDiv
