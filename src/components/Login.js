@@ -46,8 +46,9 @@ export const Login = () => {
   buttonLoginGoogle.addEventListener('click', () => {
     signInWithGoogle()
       .then((userCredential) => {
+        console.log(userCredential);
         onNavigate('/home');
-      })
+      });
   });
 
   buttonLogin.addEventListener('click', () => {
@@ -58,12 +59,13 @@ export const Login = () => {
       .then((userCredential) => {
       // Signed in
         const user = userCredential.user;
+        console.log(user);
         onNavigate('/home');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(error);
+        console.log(error, errorCode, errorMessage);
       });
   });
 
