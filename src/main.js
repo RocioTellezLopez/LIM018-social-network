@@ -21,6 +21,8 @@ const routes = {
   '/home': Home,
 };
 
+// const rootDiv = document.getElementById('root');
+
 export const onNavigate = (pathname) => {
   const rootDiv = document.getElementById('root');
   window.history.pushState(
@@ -42,9 +44,9 @@ window.onpopstate = () => {
   rootDiv.appendChild(routes[window.location.pathname]());
 };
 
-window.addEventListener('init', () => {
+window.addEventListener('load', () => {
   const rootDiv = document.getElementById('root');
   rootDiv.appendChild(routes[window.location.pathname]());
 });
 
-// Que la funcion onNavegate sea independiente de roodDiv
+// rootDiv.appendChild(routes[window.location.pathname]());
