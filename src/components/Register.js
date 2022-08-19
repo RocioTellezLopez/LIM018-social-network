@@ -55,6 +55,7 @@ export const Register = () => {
 
     createUserWithEmail(email, password)
       .then((userCredential) => {
+        console.log(userCredential);
         console.log('Registro exitoso');
         onNavigate('/login');
       });
@@ -72,6 +73,5 @@ export const Register = () => {
   HomeDiv.appendChild(formLogin);
   HomeDiv.appendChild(textLogin);
   textLogin.appendChild(backLogin);
-  
   return HomeDiv;
 };
