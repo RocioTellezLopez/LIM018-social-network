@@ -6,9 +6,20 @@ export const Login = () => {
   const HomeDiv = document.createElement('div');
   HomeDiv.className = 'homeDiv';
 
+  /* ---------- */
+  const logoTitleDiv = document.createElement('div');
+  logoTitleDiv.className = 'logoTitleDiv';
+  const imgLogoDiv = document.createElement('div');
+  imgLogoDiv.className = 'imgLogoDiv';
+  const imgLogo = document.createElement('img');
+  imgLogo.src = '../img/comida-sana-green.png';
+  imgLogo.id = 'imgLogo';
+
   const titleLogo = document.createElement('h1');
   titleLogo.textContent = 'HEALTHY FOOD LOVERS';
   titleLogo.className = 'titleLogo';
+
+  /* ---------- */
 
   const formLogin = document.createElement('form');
   formLogin.className = 'formLogin';
@@ -35,8 +46,9 @@ export const Login = () => {
   buttonLoginGoogle.addEventListener('click', () => {
     signInWithGoogle()
       .then((userCredential) => {
+        console.log(userCredential);
         onNavigate('/home');
-      })
+      });
   });
 
   buttonLogin.addEventListener('click', () => {
@@ -47,16 +59,21 @@ export const Login = () => {
       .then((userCredential) => {
       // Signed in
         const user = userCredential.user;
+        console.log(user);
         onNavigate('/home');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(error);
+        console.log(error, errorCode, errorMessage);
       });
   });
 
-  HomeDiv.appendChild(titleLogo);
+  imgLogoDiv.appendChild(imgLogo);
+  logoTitleDiv.appendChild(imgLogoDiv);
+  logoTitleDiv.appendChild(titleLogo);
+  HomeDiv.appendChild(logoTitleDiv);
+
   formLogin.appendChild(buttonLoginGoogle);
   formLogin.appendChild(inputMail);
   formLogin.appendChild(inputPassword);
