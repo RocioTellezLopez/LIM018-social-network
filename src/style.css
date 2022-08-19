@@ -48,7 +48,7 @@ body {
 }
 .titleLogo {
     font-size: 1.8rem;
-    font-family: 'Chicle';
+    font-family: 'Chicle', sans-serif;
     text-align: center;
     font-weight: bolder;
     color: #1ed760;
