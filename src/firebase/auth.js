@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js';
 import {
   getAuth,
@@ -5,6 +6,8 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+// eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -23,6 +26,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+// eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig);
 
 /* ---------- Firebase Auth ---------- */
@@ -34,9 +38,12 @@ const auth = getAuth();
 
 signInWithPopup(auth, provider)
   .then((result) => {
+    // eslint-disable-next-line no-unused-vars
     const user = result.user;
   }).catch((error) => {
+    // eslint-disable-next-line no-unused-vars
     const errorCode = error.code;
+    // eslint-disable-next-line no-unused-vars
     const errorMessage = error.message;
   });
 
@@ -44,8 +51,14 @@ export const signInWithGoogle = () => signInWithPopup(auth, provider);
 
 /* ---------- Firebase Auth - createUserWithEmailAndPassword ---------- */
 
-export const createUserWithEmail = (email, password) => createUserWithEmailAndPassword(auth, email, password)
+// eslint-disable-next-line max-len
+export const createUserWithEmail = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 
 /* ---------- Firebase Auth - signInWithEmailAndPassword ---------- */
 
-export const signInWithEmail = (email, password) =>  signInWithEmailAndPassword(auth, email, password)
+// eslint-disable-next-line max-len
+export const signInWithEmail = (email, password) => signInWithEmailAndPassword(auth, email, password);
+
+/* ---------- Firebase Auth - signOut ---------- */
+
+export const signOutLogin = () => signOut(auth);

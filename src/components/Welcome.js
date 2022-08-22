@@ -13,9 +13,21 @@ export const Welcome = () => {
   const welcomeDiv = document.createElement('div');
   welcomeDiv.className = 'welcomeDiv';
 
+  /* ---------- */
+  const logoTitleDiv = document.createElement('div');
+  logoTitleDiv.className = 'logoTitleDiv';
+  const imgLogoDiv = document.createElement('div');
+  imgLogoDiv.className = 'imgLogoDiv';
+  const imgLogo = document.createElement('img');
+  imgLogo.src = '../img/comida-sana-green.png';
+  imgLogo.id = 'imgLogo';
+
   const titleLogo = document.createElement('h1');
   titleLogo.textContent = 'HEALTHY FOOD LOVERS';
   titleLogo.className = 'titleLogo';
+  titleLogo.id = 'titleWelcome';
+
+  /* ---------- */
 
   const buttonDiv = document.createElement('div');
   buttonDiv.className = 'buttonDiv';
@@ -33,8 +45,14 @@ export const Welcome = () => {
   buttonLogin.addEventListener('click', () => onNavigate('/login'));
 
   homeDiv.appendChild(imgFood);
+
+  imgLogoDiv.appendChild(imgLogo);
+  logoTitleDiv.appendChild(imgLogoDiv);
+  logoTitleDiv.appendChild(titleLogo);
+  welcomeDiv.appendChild(logoTitleDiv);
+
   homeDiv.appendChild(welcomeDiv);
-  welcomeDiv.appendChild(titleLogo);
+  // welcomeDiv.appendChild(titleLogo);
   buttonDiv.appendChild(buttonRegister);
   buttonDiv.appendChild(buttonLogin);
   welcomeDiv.appendChild(buttonDiv);

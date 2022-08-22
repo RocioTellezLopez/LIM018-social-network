@@ -8,16 +8,23 @@ import { Register } from './components/Register.js';
 // eslint-disable-next-line import/no-cycle
 import { Login } from './components/Login.js';
 
-const rootDiv = document.getElementById('root');
-
 const routes = {
+  /* route github pages */
+  '/LIM018-social-network/src': Welcome,
+  '/LIM018-social-network/src/register': Register,
+  '/LIM018-social-network/src/login': Login,
+  '/LIM018-social-network/src/home': Home,
+  /* route localhost */
   '/': Welcome,
   '/register': Register,
   '/login': Login,
   '/home': Home,
 };
 
+// const rootDiv = document.getElementById('root');
+
 export const onNavigate = (pathname) => {
+  const rootDiv = document.getElementById('root');
   window.history.pushState(
     {},
     pathname,
@@ -29,11 +36,17 @@ export const onNavigate = (pathname) => {
   }
   rootDiv.appendChild(routes[pathname]());
 };
-const component = routes[window.location.pathname];
+// const component = routes[window.location.pathname];
 
-console.log(component);
 window.onpopstate = () => {
-  rootDiv.appendChild(component());
+  const rootDiv = document.getElementById('root');
+  // rootDiv.appendChild(component());
+  rootDiv.appendChild(routes[window.location.pathname]());
 };
-console.log(component);
-rootDiv.appendChild(component());
+
+window.addEventListener('load', () => {
+  const rootDiv = document.getElementById('root');
+  rootDiv.appendChild(routes[window.location.pathname]());
+});
+
+// rootDiv.appendChild(routes[window.location.pathname]());
