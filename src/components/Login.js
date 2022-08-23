@@ -48,8 +48,12 @@ export const Login = () => {
       .then((userCredential) => {
         console.log(userCredential);
         onNavigate('/home');
-      });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
   });
+});
 
   buttonLogin.addEventListener('click', () => {
     const email = inputMail.value;

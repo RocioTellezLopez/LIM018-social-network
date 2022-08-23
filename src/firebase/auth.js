@@ -36,7 +36,7 @@ const auth = getAuth();
 
 /* ---------- Firebase Auth - GoogleAuthProvider ---------- */
 
-signInWithPopup(auth, provider)
+/*signInWithPopup(auth, provider)
   .then((result) => {
     // eslint-disable-next-line no-unused-vars
     const user = result.user;
@@ -45,7 +45,7 @@ signInWithPopup(auth, provider)
     const errorCode = error.code;
     // eslint-disable-next-line no-unused-vars
     const errorMessage = error.message;
-  });
+  });*/
 
 export const signInWithGoogle = () => signInWithPopup(auth, provider);
 

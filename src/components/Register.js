@@ -47,18 +47,51 @@ export const Register = () => {
   const backLogin = document.createElement('a');
   backLogin.textContent = 'Inicia Sesión';
 
+  const mensajeRegistro = document.createElement('p');
+  mensajeRegistro.className = 'mensajeRegistro'
+
   backLogin.addEventListener('click', () => onNavigate('/login'));
 
   buttonRegister.addEventListener('click', () => {
     const email = inputMail.value;
     const password = inputPassword.value;
+    const nameUser = inputName.value;
 
+    if(nameUser === '' || email === '' || password === '' ){
+      
+      //console.log("Ingresa los datos solicitados")
+      if(nameUser !== '' && nameUser.length < 2){
+        return mensajeRegistro.innerHTML = "Tu nombre es muy corto";
+      }
+      const emailRegValido = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      if(email!== '' && !emailRegValido.test(email)){
+        return mensajeRegistro.innerHTML = "Email inválido";
+      }
+      if(password !== '' && password.length < 6){
+        return mensajeRegistro.innerHTML = "Password como mínimo con 6 caracteres";
+      }
+      return mensajeRegistro.innerHTML = "Ingresa los datos solicitados";
+      /*const emailRegValido = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      switch(emailRegValido){
+        case !emailRegValido.test(email):
+          console.log("Ingresa los datos solicitados")
+          //mensajeRegistro.innerHTML = 'Email inválido';
+          break;
+      }*/
+      
+
+    }else {
     createUserWithEmail(email, password)
       .then((userCredential) => {
-        console.log(userCredential);
+        const user = userCredential.user;
+        user.displayName = nameUser;
+        const uID = user.uid;
+        console.log(user);
+        console.log(uID);
         console.log('Registro exitoso');
         onNavigate('/login');
       });
+    }
   });
 
   imgLogoDiv.appendChild(imgLogo);
@@ -70,6 +103,7 @@ export const Register = () => {
   formLogin.appendChild(inputMail);
   formLogin.appendChild(inputPassword);
   formLogin.appendChild(buttonRegister);
+  formLogin.appendChild(mensajeRegistro);
   HomeDiv.appendChild(formLogin);
   HomeDiv.appendChild(textLogin);
   textLogin.appendChild(backLogin);
