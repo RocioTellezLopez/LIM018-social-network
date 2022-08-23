@@ -68,7 +68,7 @@ export const Register = () => {
         return mensajeRegistro.innerHTML = "Email inválido";
       }
       if(password !== '' && password.length < 6){
-        return mensajeRegistro.innerHTML = "Password inválido";
+        return mensajeRegistro.innerHTML = "Password como mínimo con 6 caracteres";
       }
       return mensajeRegistro.innerHTML = "Ingresa los datos solicitados";
       /*const emailRegValido = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
