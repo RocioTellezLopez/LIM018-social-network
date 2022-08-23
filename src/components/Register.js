@@ -59,7 +59,6 @@ export const Register = () => {
 
     if(nameUser === '' || email === '' || password === '' ){
       
-      //console.log("Ingresa los datos solicitados")
       if(nameUser !== '' && nameUser.length < 2){
         return mensajeRegistro.innerHTML = "Tu nombre es muy corto";
       }
@@ -79,7 +78,6 @@ export const Register = () => {
           break;
       }*/
       
-
     }else {
     createUserWithEmail(email, password)
       .then((userCredential) => {
