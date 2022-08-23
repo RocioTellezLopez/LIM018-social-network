@@ -129,6 +129,11 @@ form input, button {
     justify-content: space-around;
     align-items: center;
 }
+.headerDiv{
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
 
 .logoDiv {
     width: 70px;
@@ -173,6 +178,9 @@ form input, button {
     margin: 20px auto;
     background: #D9D9D9;
     border-radius: 10px;
+}
+.publicationDiv{
+    margin: 60px auto;
 }
 
 .publicationDiv textarea {
