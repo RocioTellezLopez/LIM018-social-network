@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { signOutLogin, stateChangedUser, callbackpublication } from '../firebase/auth.js';
+import { signOutLogin, stateChangedUser } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
 
 const userDiv = document.createElement('div');

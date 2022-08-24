@@ -56,40 +56,8 @@ export const signOutLogin = () => signOut(auth);
 
 /* ----- FireStore ----- */
 
-export const stateChangedUser = (user) => onAuthStateChanged(auth, user);
+export function stateChangedUser (callback) { return onAuthStateChanged(auth, callback)};
 
 export const db = getFirestore(app);
 
-export const docRef = (publicacion) => await addDoc(collection(db, 'publication'), publicacion);
-// try {
-//   const docRef = await addDoc(collection(db, "users"), {
-//     first: "Annita",
-//     middle: "Mat",
-//     last: "Tur",
-//     born: 1999,
-//   });
-
-//   console.log("Document written with ID: ", docRef.id);
-// } catch (e) {
-//   console.error("Error adding document: ", e);
-// }
-
-function saludo (name) {console.log('hola' + name)};
-
-saludo('rocio');
-console.log(saludo('rocio'));
-saludo('beatriz');
-saludo('annita');
-
-export function callbackpublication (uidUser, date, nameUser, description) {
-  return {
-    uidUser: uidUser,
-    date: date,
-    nameUser: nameUser,
-    description: description,
-  }
-};
-
-const postPrueba = callbackpublication('12345678', '25/08/22','Pepito','hola este es un post de pepito');
-
-console.log(postPrueba);
+export function docRef (publicacion) { return addDoc(collection(db, 'publication'), publicacion)};
