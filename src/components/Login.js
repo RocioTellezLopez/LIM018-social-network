@@ -63,7 +63,9 @@ export const Login = () => {
       .then((userCredential) => {
       // Signed in
         const user = userCredential.user;
-        console.log(user);
+        // const nameUser = user.displayName;
+        // console.log(user);
+        // console.log(nameUser);
         onNavigate('/home');
       })
       .catch((error) => {

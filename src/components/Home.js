@@ -1,6 +1,28 @@
 /* eslint-disable import/no-cycle */
-import { signOutLogin } from '../firebase/auth.js';
+import { signOutLogin, stateChangedUser, callbackpublication } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
+
+const userDiv = document.createElement('div');
+stateChangedUser((user) => {
+  const userName = document.createElement('p');
+  if (user) {
+    console.log('el usuario inicio sesion');
+    console.log(user);
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    const displayName = user.displayName;
+    userName.textContent = displayName;
+    userDiv.appendChild(userName);
+    console.log(uid);
+    console.log(displayName);
+  } else {
+    // User is signed out
+    console.log('el usuario no inicio sesion');
+
+    onNavigate('/');
+  }
+});
 
 export const Home = () => {
   const HomeDiv = document.createElement('div');
@@ -31,11 +53,16 @@ export const Home = () => {
 
   const publicationDiv = document.createElement('div');
   publicationDiv.className = 'publicationDiv';
+  publicationDiv.appendChild(userDiv);
   const textPublication = document.createElement('textarea');
   textPublication.placeholder = '¿Qué estás pensando?';
   const buttonPublication = document.createElement('button');
   buttonPublication.textContent = 'Publicar';
   buttonPublication.id = 'buttonPublication';
+
+  buttonPublication.addEventListener('click', () => {
+    console.log(callbackpublication('12345', '24/08', 'Juanita', textPublication.value));
+  });
 
   /* post example */
   const post = document.createElement('div');
@@ -70,8 +97,6 @@ export const Home = () => {
   logOut.addEventListener('click', () => {
     signOutLogin()
       .then((result) => {
-        // eslint-disable-next-line no-console
-        console.log(result);
         // eslint-disable-next-line no-console
         console.log('cerraste sesion');
         onNavigate('/');
