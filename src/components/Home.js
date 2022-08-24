@@ -61,7 +61,7 @@ export const Home = () => {
   buttonPublication.id = 'buttonPublication';
 
   buttonPublication.addEventListener('click', () => {
-    console.log(callbackpublication('12345', '24/08', 'Juanita', textPublication.value));
+    console.log('hola soy el post');
   });
 
   /* post example */
