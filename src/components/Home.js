@@ -1,6 +1,28 @@
 /* eslint-disable import/no-cycle */
-import { signOutLogin } from '../firebase/auth.js';
+import { signOutLogin, stateChangedUser, addPost } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
+
+const userDiv = document.createElement('div');
+stateChangedUser((user) => {
+  console.log(user);
+  const userName = document.createElement('p');
+  if (user) {
+    console.log('el usuario inicio sesion');
+    const uid = user.uid;
+    const displayName = user.displayName;
+    
+    userName.textContent = displayName;
+    while(userDiv.firstChild) {
+      userDiv.removeChild(userDiv.firstChild);
+    };
+    userDiv.appendChild(userName);
+  } else {
+    // User is signed out
+    console.log('el usuario no inicio sesion');
+
+    onNavigate('/');
+  }
+});
 
 export const Home = () => {
   const HomeDiv = document.createElement('div');
@@ -31,11 +53,24 @@ export const Home = () => {
 
   const publicationDiv = document.createElement('div');
   publicationDiv.className = 'publicationDiv';
+  // debugger
+  publicationDiv.appendChild(userDiv);
   const textPublication = document.createElement('textarea');
   textPublication.placeholder = '¿Qué estás pensando?';
   const buttonPublication = document.createElement('button');
   buttonPublication.textContent = 'Publicar';
   buttonPublication.id = 'buttonPublication';
+
+  buttonPublication.addEventListener('click', () => {
+    addPost({ 
+      descripcion: textPublication.value,
+      fecha: new Date(),
+    }).then(() => {
+      textPublication.value = '';
+    });
+
+    console.log('hola soy el post');
+  });
 
   /* post example */
   const post = document.createElement('div');
@@ -70,8 +105,6 @@ export const Home = () => {
   logOut.addEventListener('click', () => {
     signOutLogin()
       .then((result) => {
-        // eslint-disable-next-line no-console
-        console.log(result);
         // eslint-disable-next-line no-console
         console.log('cerraste sesion');
         onNavigate('/');
