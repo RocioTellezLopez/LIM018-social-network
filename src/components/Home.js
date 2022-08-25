@@ -1,21 +1,21 @@
 /* eslint-disable import/no-cycle */
-import { signOutLogin, stateChangedUser } from '../firebase/auth.js';
+import { signOutLogin, stateChangedUser, addPost } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
 
 const userDiv = document.createElement('div');
 stateChangedUser((user) => {
+  console.log(user);
   const userName = document.createElement('p');
   if (user) {
     console.log('el usuario inicio sesion');
-    console.log(user);
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
     const uid = user.uid;
     const displayName = user.displayName;
+    
     userName.textContent = displayName;
+    while(userDiv.firstChild) {
+      userDiv.removeChild(userDiv.firstChild);
+    };
     userDiv.appendChild(userName);
-    console.log(uid);
-    console.log(displayName);
   } else {
     // User is signed out
     console.log('el usuario no inicio sesion');
@@ -53,6 +53,7 @@ export const Home = () => {
 
   const publicationDiv = document.createElement('div');
   publicationDiv.className = 'publicationDiv';
+  // debugger
   publicationDiv.appendChild(userDiv);
   const textPublication = document.createElement('textarea');
   textPublication.placeholder = '¿Qué estás pensando?';
@@ -61,6 +62,13 @@ export const Home = () => {
   buttonPublication.id = 'buttonPublication';
 
   buttonPublication.addEventListener('click', () => {
+    addPost({ 
+      descripcion: textPublication.value,
+      fecha: new Date(),
+    }).then(() => {
+      textPublication.value = '';
+    });
+
     console.log('hola soy el post');
   });
 
