@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
-import { createUserWithEmail } from '../firebase/auth.js';
+import { createUserWithEmail, updateProfileUser } from '../firebase/auth.js';
 
 export const Register = () => {
   const HomeDiv = document.createElement('div');
@@ -78,16 +78,18 @@ export const Register = () => {
           break;
       } */
     }
+
     createUserWithEmail(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        user.displayName = nameUser;
+        // user.displayName = nameUser;
         const uid = user.uid;
+        // debugger;
+        updateProfileUser(nameUser, uid).then(() => console.log('Nombre actualizado'));
         console.log(user);
-        console.log(uid);
         console.log('Registro exitoso');
-        onNavigate('/login');
       });
+      setTimeout(() => onNavigate('/login'), 1000);
   });
 
   imgLogoDiv.appendChild(imgLogo);
