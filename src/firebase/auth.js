@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js';
@@ -56,8 +57,17 @@ export const signOutLogin = () => signOut(auth);
 
 /* ----- FireStore ----- */
 
-export function stateChangedUser (callback) { return onAuthStateChanged(auth, callback)};
+export function stateChangedUser(callback) { return onAuthStateChanged(auth, callback); }
 
 export const db = getFirestore(app);
 
-export function docRef (publicacion) { return addDoc(collection(db, 'publication'), publicacion)};
+export function addPost(publicacion) { return addDoc(collection(db, 'post'), publicacion); }
+
+/* ----- Update Profile */
+
+export function updateProfileUser(userName, userId) {
+  return updateProfile(auth.currentUser, {
+    displayName: userName,
+    uid: userId,
+  });
+}
