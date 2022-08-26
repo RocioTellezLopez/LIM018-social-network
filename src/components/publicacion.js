@@ -1,5 +1,7 @@
 /* eslint-disable import/no-cycle */
-import { signOutLogin, stateChangedUser, addPost } from '../firebase/auth.js';
+import {
+  signOutLogin, stateChangedUser, addPost, getPost
+} from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
 
 console.log('soy publicacion');
@@ -36,7 +38,7 @@ export const publicacion = () => {
   // debugger
   const userDiv = document.createElement('div');
   publicationDiv.appendChild(userDiv);
-  
+
   const textPublication = document.createElement('textarea');
   textPublication.placeholder = '¿Qué estás pensando?';
   const buttonPublication = document.createElement('button');
@@ -45,19 +47,16 @@ export const publicacion = () => {
 
   buttonPublication.addEventListener('click', () => {
     addPost({
-      descripcion: textPublication.value,
-      fecha: new Date(),
+      description: textPublication.value,
+      dateDescription: new Date(),
     }).then(() => {
       textPublication.value = '';
     });
-
-    console.log('hola soy el post');
   });
+
   stateChangedUser((user) => {
-    console.log(user);
     const userName = document.createElement('p');
     if (user) {
-      console.log('el usuario inicio sesion');
       const uid = user.uid;
       const displayName = user.displayName;
       userName.textContent = displayName;
@@ -66,23 +65,44 @@ export const publicacion = () => {
       }
       userDiv.appendChild(userName);
     } else {
-    // User is signed out
+      // User is signed out
       console.log('el usuario no inicio sesion');
 
       onNavigate('/');
     }
   });
 
-  /* post example */
-  const post = document.createElement('div');
-  post.className = 'postExample';
+  /* ----- Post ----- */
+  getPost().then((post) => post.forEach((doc) => {
+    const postDescription = doc.data().description;
+    const dateDescription = doc.data().dateDescription;
 
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < 5; i++) {
-    const post2 = document.createElement('div');
-    post2.className = 'postExample';
-    post.appendChild(post2);
-  }
+    const divPost = document.createElement('div');
+    const nameUserPost = document.createElement('p');
+    const dateUserPost = document.createElement('p');
+    const descriptionUserPost = document.createElement('p');
+
+    nameUserPost.textContent = 'collection';
+    dateUserPost.textContent = dateDescription.toDate().toDateString() + ' - ' + dateDescription.toDate().toLocaleTimeString();
+    descriptionUserPost.textContent = postDescription;
+  
+    divPost.appendChild(nameUserPost);
+    divPost.appendChild(dateUserPost);
+    divPost.appendChild(descriptionUserPost);
+
+    principalContent.appendChild(divPost);
+  }));
+
+
+  // const post = document.createElement('div');
+  // post.className = 'postExample';
+
+  // // eslint-disable-next-line no-plusplus
+  // for (let i = 0; i < 5; i++) {
+  //   const post2 = document.createElement('div');
+  //   post2.className = 'postExample';
+  //   post.appendChild(post2);
+  // }
 
   /* ---------- */
   const navDiv = document.createElement('div');
@@ -127,7 +147,7 @@ export const publicacion = () => {
   headerDiv.appendChild(logOut);
 
   principalContent.appendChild(publicationDiv);
-  principalContent.appendChild(post);
+  // principalContent.appendChild(post);
   publicationDiv.appendChild(textPublication);
   publicationDiv.appendChild(buttonPublication);
   HomeDiv.appendChild(headerDiv);
@@ -136,4 +156,19 @@ export const publicacion = () => {
   HomeDiv.appendChild(navDiv);
 
   return HomeDiv;
+};
+
+function allPost(nameUser = 'collection', dateDescription, description) {
+  const divPost = document.createElement('div');
+  const nameUserPost = document.createElement('p');
+  const dateUserPost = document.createElement('p');
+  const descriptionUserPost = document.createComment('p');
+
+  nameUserPost.textContent = nameUser;
+  dateUserPost.textContent = dateDescription;
+  descriptionUserPost.textContent = description;
+
+  divPost.appendChild(nameUserPost);
+  divPost.appendChild(dateUserPost);
+  divPost.appendChild(descriptionUserPost);
 };
