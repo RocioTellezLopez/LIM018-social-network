@@ -2,6 +2,8 @@
 import { signInWithGoogle, signInWithEmail } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
 
+console.log('Soy el login!');
+
 export const Login = () => {
   const HomeDiv = document.createElement('div');
   HomeDiv.className = 'homeDiv';
@@ -64,7 +66,7 @@ export const Login = () => {
       // Signed in
         const user = userCredential.user;
         // const nameUser = user.displayName;
-        // console.log(user);
+        console.log(user);
         // console.log(nameUser);
         onNavigate('/home');
       })

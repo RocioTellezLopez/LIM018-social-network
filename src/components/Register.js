@@ -74,19 +74,18 @@ export const Register = () => {
         "Password como mínimo con 6 caracteres");
     }
 
-    console.log(email, password);
-    createUserWithEmail(email, password).then((userCredential) => {
-      const user = userCredential.user;
-      // user.displayName = nameUser;
-      const uid = user.uid;
-      // debugger;
-      updateProfileUser(nameUser, uid).then(() =>
-        console.log("Nombre actualizado")
-      );
-      console.log(user);
-      console.log("Registro exitoso");
-    });
-    setTimeout(() => onNavigate("/login"), 1000);
+    createUserWithEmail(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        // user.displayName = nameUser;
+        const uid = user.uid;
+        // debugger;
+        updateProfileUser(nameUser, uid).then(() => console.log('Nombre actualizado'));
+        console.log(user);
+        console.log('Registro exitoso');
+      });
+    onNavigate('/login');
+    // setTimeout(() => onNavigate('/login'), 1000);
   });
 
   imgLogoDiv.appendChild(imgLogo);
