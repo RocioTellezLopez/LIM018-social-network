@@ -89,7 +89,8 @@ export const Register = () => {
         console.log(user);
         console.log('Registro exitoso');
       });
-      setTimeout(() => onNavigate('/login'), 1000);
+    onNavigate('/login');
+    // setTimeout(() => onNavigate('/login'), 1000);
   });
 
   imgLogoDiv.appendChild(imgLogo);
