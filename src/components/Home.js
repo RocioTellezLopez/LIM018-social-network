@@ -1,12 +1,12 @@
 /* eslint-disable import/no-cycle */
 import {
-  signOutLogin, stateChangedUser, addPost, getPost
+  signOutLogin, stateChangedUser, addPost, getPost,
 } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
+import setHeader from './Header.js';
+import { signOutLoginFirestore } from '../lib/index.js';
 
-console.log('soy publicacion');
-
-export const publicacion = () => {
+export const Home = () => {
   const HomeDiv = document.createElement('div');
   // HomeDiv.classList = 'homeDiv';
   HomeDiv.classList = 'homeDiv homeView';
@@ -15,19 +15,19 @@ export const publicacion = () => {
   const headerDiv = document.createElement('div');
   headerDiv.className = 'headerDiv';
 
-  const logoDiv = document.createElement('div');
-  logoDiv.className = 'logoDiv';
-  const logoIcon = document.createElement('img');
-  logoIcon.src = '../img/comida-sana-white.png';
+  // const logoDiv = document.createElement('div');
+  // logoDiv.className = 'logoDiv';
+  // const logoIcon = document.createElement('img');
+  // logoIcon.src = '../img/comida-sana-white.png';
 
-  const titleLogo = document.createElement('h1');
-  titleLogo.textContent = 'HEALTHY FOOD LOVERS';
-  titleLogo.className = 'headerTitle';
+  // const titleLogo = document.createElement('h1');
+  // titleLogo.textContent = 'HEALTHY FOOD LOVERS';
+  // titleLogo.className = 'headerTitle';
 
-  const logOut = document.createElement('div');
-  logOut.className = 'logOut';
-  const logOutIcon = document.createElement('img');
-  logOutIcon.src = '../img/exit-free-icon.png';
+  // const logOut = document.createElement('div');
+  // logOut.className = 'logOut';
+  // const logOutIcon = document.createElement('img');
+  // logOutIcon.src = '../img/exit-free-icon.png';
 
   /* ---------- */
   const principalContent = document.createElement('div');
@@ -83,26 +83,15 @@ export const publicacion = () => {
     const descriptionUserPost = document.createElement('p');
 
     nameUserPost.textContent = 'collection';
-    dateUserPost.textContent = dateDescription.toDate().toDateString() + ' - ' + dateDescription.toDate().toLocaleTimeString();
+    dateUserPost.textContent = `${dateDescription.toDate().toDateString()} - ${dateDescription.toDate().toLocaleTimeString()}`;
     descriptionUserPost.textContent = postDescription;
-  
+
     divPost.appendChild(nameUserPost);
     divPost.appendChild(dateUserPost);
     divPost.appendChild(descriptionUserPost);
 
     principalContent.appendChild(divPost);
   }));
-
-
-  // const post = document.createElement('div');
-  // post.className = 'postExample';
-
-  // // eslint-disable-next-line no-plusplus
-  // for (let i = 0; i < 5; i++) {
-  //   const post2 = document.createElement('div');
-  //   post2.className = 'postExample';
-  //   post.appendChild(post2);
-  // }
 
   /* ---------- */
   const navDiv = document.createElement('div');
@@ -123,14 +112,14 @@ export const publicacion = () => {
   const profileIconImg = document.createElement('img');
   profileIconImg.src = '../img/user-white.png';
 
-  logOut.addEventListener('click', () => {
-    signOutLogin()
-      .then((result) => {
-        // eslint-disable-next-line no-console
-        console.log('cerraste sesion');
-        onNavigate('/');
-      });
-  });
+  // logOut.addEventListener('click', () => {
+  //   signOutLogin()
+  //     .then((result) => {
+  //       // eslint-disable-next-line no-console
+  //       console.log('cerraste sesion');
+  //       onNavigate('/');
+  //     });
+  // });
 
   homeIcon.appendChild(homeIconImg);
   publicationIcon.appendChild(publicationIconImg);
@@ -140,11 +129,9 @@ export const publicacion = () => {
   navDiv.appendChild(publicationIcon);
   navDiv.appendChild(profileIcon);
 
-  logoDiv.appendChild(logoIcon);
-  headerDiv.appendChild(logoDiv);
-  headerDiv.appendChild(titleLogo);
-  logOut.appendChild(logOutIcon);
-  headerDiv.appendChild(logOut);
+  setHeader(headerDiv);
+  const botonLogOut = document.getElementsByClassName('logOut');
+  botonLogOut.addEventListener('click', signOutLoginFirestore());
 
   principalContent.appendChild(publicationDiv);
   // principalContent.appendChild(post);
@@ -158,17 +145,19 @@ export const publicacion = () => {
   return HomeDiv;
 };
 
-function allPost(nameUser = 'collection', dateDescription, description) {
-  const divPost = document.createElement('div');
-  const nameUserPost = document.createElement('p');
-  const dateUserPost = document.createElement('p');
-  const descriptionUserPost = document.createComment('p');
+// function allPost(nameUser = 'collection', dateDescription, description) {
+//   const divPost = document.createElement('div');
+//   const nameUserPost = document.createElement('p');
+//   const dateUserPost = document.createElement('p');
+//   const descriptionUserPost = document.createComment('p');
 
-  nameUserPost.textContent = nameUser;
-  dateUserPost.textContent = dateDescription;
-  descriptionUserPost.textContent = description;
+//   nameUserPost.textContent = nameUser;
+//   dateUserPost.textContent = dateDescription;
+//   descriptionUserPost.textContent = description;
 
-  divPost.appendChild(nameUserPost);
-  divPost.appendChild(dateUserPost);
-  divPost.appendChild(descriptionUserPost);
-};
+//   divPost.appendChild(nameUserPost);
+//   divPost.appendChild(dateUserPost);
+//   divPost.appendChild(descriptionUserPost);
+
+//   return divPost;
+// }

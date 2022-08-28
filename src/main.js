@@ -2,7 +2,7 @@
 // eslint-disable-next-line import/no-cycle
 import { Welcome } from './components/Welcome.js';
 // eslint-disable-next-line import/no-cycle
-import { publicacion } from './components/publicacion.js';
+import { Home } from './components/Home.js';
 // eslint-disable-next-line import/no-cycle
 import { Register } from './components/Register.js';
 // eslint-disable-next-line import/no-cycle
@@ -13,12 +13,12 @@ const routes = {
   '/LIM018-social-network/src': Welcome,
   '/LIM018-social-network/src/register': Register,
   '/LIM018-social-network/src/login': Login,
-  '/LIM018-social-network/src/home': publicacion,
+  '/LIM018-social-network/src/home': Home,
   /* route localhost */
   '/': Welcome,
   '/register': Register,
   '/login': Login,
-  '/home': publicacion,
+  '/home': Home,
 };
 
 // const rootDiv = document.getElementById('root');
@@ -36,7 +36,6 @@ export const onNavigate = (pathname) => {
   }
   rootDiv.appendChild(routes[pathname]());
 };
-// const component = routes[window.location.pathname];
 
 window.onpopstate = () => {
   const rootDiv = document.getElementById('root');
@@ -48,5 +47,3 @@ window.addEventListener('load', () => {
   const rootDiv = document.getElementById('root');
   rootDiv.appendChild(routes[window.location.pathname]());
 });
-
-// rootDiv.appendChild(routes[window.location.pathname]());
