@@ -172,14 +172,14 @@ form input, button {
 
 /* -----Publication----- */
 
-.publicationDiv, .postExample {
+.publicationDiv, .divPost {
     width: 315px;
     height: 120px;
     margin: 20px auto;
     background: #D9D9D9;
     border-radius: 10px;
 }
-.publicationDiv{
+.publicationDiv {
     margin: 60px auto;
 }
 
@@ -218,6 +218,40 @@ form input, button {
     text-align: center;
     font-weight: bolder;
 }
+
+.divPost {
+    background: #D7FFC9;
+    margin: 10px auto;
+    padding: 10px; 
+}
+
+/* .divPost p {
+    margin: 5px auto;
+} */
+
+.nameUserPost {
+    font-size: 1rem;
+    font-weight: bolder;
+    margin: 5px auto;
+}
+
+.dateUserPost {
+    font-size: 0.8rem;
+    color: #7D7676;
+    margin: 5px auto;
+}
+
+.descriptionUserPost {
+    font-size: 1.1rem;
+    background: white;
+    padding: 10px 2px;
+    border-radius: 10px;
+    height: 40px;
+    margin: 8px auto;
+
+}
+
+
 
 @media only screen and (min-width: 768px) {
     .homeDiv {
