@@ -1,4 +1,4 @@
-export default function (div) {
+export default function (div, callback) {
   const logoDiv = document.createElement('div');
   logoDiv.className = 'logoDiv';
   const logoIcon = document.createElement('img');
@@ -10,11 +10,11 @@ export default function (div) {
 
   const logOut = document.createElement('div');
   logOut.className = 'logOut';
+  logOut.id = 'logOut';
   const logOutIcon = document.createElement('img');
   logOutIcon.src = '../img/exit-free-icon.png';
 
-//   logOut.addEventListener('click', signOutLoginFirestore());
-//   logOut.addEventListener('click', () => console.log('hola soy el boton de salir'));
+  logOut.addEventListener('click', callback);
 
   logoDiv.appendChild(logoIcon);
   logOut.appendChild(logOutIcon);
