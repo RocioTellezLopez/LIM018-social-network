@@ -1,10 +1,8 @@
 /* eslint-disable import/no-cycle */
-import {
-  signOutLogin, stateChangedUser, addPost, getPost,
-} from '../firebase/auth.js';
+import { stateChangedUser, addPost, getPost } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
 import setHeader from './Header.js';
-import { signOutLoginFirestore } from '../lib/index.js';
+import { signOutUser } from '../lib/index.js';
 
 export const Home = () => {
   const HomeDiv = document.createElement('div');
@@ -15,19 +13,7 @@ export const Home = () => {
   const headerDiv = document.createElement('div');
   headerDiv.className = 'headerDiv';
 
-  // const logoDiv = document.createElement('div');
-  // logoDiv.className = 'logoDiv';
-  // const logoIcon = document.createElement('img');
-  // logoIcon.src = '../img/comida-sana-white.png';
-
-  // const titleLogo = document.createElement('h1');
-  // titleLogo.textContent = 'HEALTHY FOOD LOVERS';
-  // titleLogo.className = 'headerTitle';
-
-  // const logOut = document.createElement('div');
-  // logOut.className = 'logOut';
-  // const logOutIcon = document.createElement('img');
-  // logOutIcon.src = '../img/exit-free-icon.png';
+  setHeader(headerDiv, signOutUser);
 
   /* ---------- */
   const principalContent = document.createElement('div');
@@ -35,7 +21,7 @@ export const Home = () => {
 
   const publicationDiv = document.createElement('div');
   publicationDiv.className = 'publicationDiv';
-  // debugger
+
   const userDiv = document.createElement('div');
   publicationDiv.appendChild(userDiv);
 
@@ -45,14 +31,15 @@ export const Home = () => {
   buttonPublication.textContent = 'Publicar';
   buttonPublication.id = 'buttonPublication';
 
-  buttonPublication.addEventListener('click', () => {
-    addPost({
-      description: textPublication.value,
-      dateDescription: new Date(),
-    }).then(() => {
-      textPublication.value = '';
-    });
-  });
+  // buttonPublication.addEventListener('click', () => {
+  //   addPost({
+  //     nameUser: displayName;
+  //     description: textPublication.value,
+  //     dateDescription: new Date(),
+  //   }).then(() => {
+  //     textPublication.value = '';
+  //   });
+  // });
 
   stateChangedUser((user) => {
     const userName = document.createElement('p');
@@ -64,34 +51,50 @@ export const Home = () => {
         userDiv.removeChild(userDiv.firstChild);
       }
       userDiv.appendChild(userName);
+      buttonPublication.addEventListener('click', () => {
+        addPost({
+          nameUser: displayName,
+          description: textPublication.value,
+          dateDescription: new Date(),
+        }).then(() => {
+          textPublication.value = '';
+        });
+      });
     } else {
       // User is signed out
       console.log('el usuario no inicio sesion');
 
-      onNavigate('/');
+      // onNavigate('/');
     }
   });
 
   /* ----- Post ----- */
-  getPost().then((post) => post.forEach((doc) => {
-    const postDescription = doc.data().description;
-    const dateDescription = doc.data().dateDescription;
+  getPost().then((post) => {
+    post.forEach((doc) => {
+      const postDescription = doc.data().description;
+      const dateDescription = doc.data().dateDescription;
+      const nameUser = doc.data().nameUser;
 
-    const divPost = document.createElement('div');
-    const nameUserPost = document.createElement('p');
-    const dateUserPost = document.createElement('p');
-    const descriptionUserPost = document.createElement('p');
+      const divPost = document.createElement('div');
+      divPost.className = 'divPost';
+      const nameUserPost = document.createElement('p');
+      nameUserPost.className = 'nameUserPost';
+      const dateUserPost = document.createElement('p');
+      dateUserPost.className = 'dateUserPost';
+      const descriptionUserPost = document.createElement('p');
+      descriptionUserPost.className = 'descriptionUserPost';
 
-    nameUserPost.textContent = 'collection';
-    dateUserPost.textContent = `${dateDescription.toDate().toDateString()} - ${dateDescription.toDate().toLocaleTimeString()}`;
-    descriptionUserPost.textContent = postDescription;
+      nameUserPost.textContent = nameUser;
+      dateUserPost.textContent = `${dateDescription.toDate().toDateString()} - ${dateDescription.toDate().toLocaleTimeString()}`;
+      descriptionUserPost.textContent = postDescription;
 
-    divPost.appendChild(nameUserPost);
-    divPost.appendChild(dateUserPost);
-    divPost.appendChild(descriptionUserPost);
+      divPost.appendChild(nameUserPost);
+      divPost.appendChild(dateUserPost);
+      divPost.appendChild(descriptionUserPost);
 
-    principalContent.appendChild(divPost);
-  }));
+      principalContent.appendChild(divPost);
+    });
+  });
 
   /* ---------- */
   const navDiv = document.createElement('div');
@@ -129,10 +132,6 @@ export const Home = () => {
   navDiv.appendChild(publicationIcon);
   navDiv.appendChild(profileIcon);
 
-  setHeader(headerDiv);
-  const botonLogOut = document.getElementsByClassName('logOut');
-  botonLogOut.addEventListener('click', signOutLoginFirestore());
-
   principalContent.appendChild(publicationDiv);
   // principalContent.appendChild(post);
   publicationDiv.appendChild(textPublication);
@@ -144,20 +143,3 @@ export const Home = () => {
 
   return HomeDiv;
 };
-
-// function allPost(nameUser = 'collection', dateDescription, description) {
-//   const divPost = document.createElement('div');
-//   const nameUserPost = document.createElement('p');
-//   const dateUserPost = document.createElement('p');
-//   const descriptionUserPost = document.createComment('p');
-
-//   nameUserPost.textContent = nameUser;
-//   dateUserPost.textContent = dateDescription;
-//   descriptionUserPost.textContent = description;
-
-//   divPost.appendChild(nameUserPost);
-//   divPost.appendChild(dateUserPost);
-//   divPost.appendChild(descriptionUserPost);
-
-//   return divPost;
-// }

@@ -12,7 +12,7 @@ import {
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 import {
-  getFirestore, collection, addDoc, getDocs,
+  getFirestore, collection, addDoc, getDocs, query, orderBy,
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -55,7 +55,7 @@ export const signInWithEmail = (email, password) => signInWithEmailAndPassword(a
 
 /* ---------- Firebase Auth - signOut ---------- */
 
-export const signOutLogin = () => signOut(auth);
+export function signOutLogin() { return signOut(auth); }
 
 /* ----- FireStore ----- */
 
@@ -74,4 +74,10 @@ export function updateProfileUser(userName, userId) {
   });
 }
 
-export function getPost() { return getDocs(collection(db, 'post')); }
+
+export const postRef = collection(db, 'post');
+// export function getPost() { return getDocs(postRef); }
+const queryPost = query(postRef, orderBy('dateDescription', 'desc'));
+
+export function getPost() { return getDocs(queryPost); }
+
