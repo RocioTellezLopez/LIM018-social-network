@@ -181,16 +181,23 @@ form input, button {
 }
 .publicationDiv {
     margin: 60px auto;
+    height: 250px;
 }
 
 .publicationDiv textarea {
     width: 285px;
-    height: 45px;
+    height: 7rem;
     border-radius: 10px;
-    margin: 10px 15px;
-    font-size: 1rem;
+    margin: 4px 15px;
+    font-size: 0.8rem;
     resize: none;
     padding: 0.4rem;
+}
+
+.publicationDiv p {
+    font-size: 1rem;
+    font-weight: bolder;
+    padding: 10px;
 }
 
 #buttonPublication {
@@ -199,7 +206,7 @@ form input, button {
     margin-top: 0;
     margin-left: 175px;
     margin-bottom: 10px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bolder;
     border: none;
     
@@ -223,11 +230,8 @@ form input, button {
     background: #D7FFC9;
     margin: 10px auto;
     padding: 10px; 
+    height: auto;
 }
-
-/* .divPost p {
-    margin: 5px auto;
-} */
 
 .nameUserPost {
     font-size: 1rem;
@@ -240,17 +244,16 @@ form input, button {
     color: #7D7676;
     margin: 5px auto;
 }
-
-.descriptionUserPost {
-    font-size: 1.1rem;
+.descriptionUserPostDiv {
     background: white;
-    padding: 10px 2px;
     border-radius: 10px;
-    height: 40px;
-    margin: 8px auto;
-
 }
-
+.descriptionUserPost {
+    font-size: 1rem;
+    padding: 10px 2px;
+    margin: 8px auto;
+    word-wrap: break-word;
+}
 
 
 @media only screen and (min-width: 768px) {
