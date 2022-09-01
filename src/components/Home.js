@@ -69,9 +69,12 @@ export const Home = () => {
   });
 
   /* ----- Post ----- */
+   
+  onGetPost(() => {
+    
   getPost().then((post) => {
     post.forEach((doc) => {
-      
+    
       const postDescription = doc.data().description;
       const dateDescription = doc.data().dateDescription;
       const nameUser = doc.data().nameUser;
@@ -99,17 +102,22 @@ export const Home = () => {
       principalContent.appendChild(divPost);
     });
   });
-
-  onGetPost((snapchot) => {
+  });
+ 
+  /*onGetPost((snapchot) => {
     snapchot.docChanges().forEach(change => {
       //const onPost = doc.data();
       console.log(change);
       //console.log(onPost);
       //console.log(callback);
-      console.log('hola');
-      
-    })
+      //const doc = change.doc;
+      //console.log(doc);
+      //if(change.type === 'added') {
+        //addPost(doc.data().description, doc.data().dateDescription, doc.data().nameUser);
+      //console.log('hola');
+      //}
   });
+  });*/
  
 
   /* ---------- */
