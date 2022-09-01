@@ -2,6 +2,21 @@
 import { onNavigate } from "../main.js";
 import { createUserWithEmail, updateProfileUser } from "../firebase/auth.js";
 
+// Función validación de email, inputMail
+const validateEmail = (inputMail, error) => {
+  //debugger;
+  const messageRegister = error;
+  const validateEmailReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  //const validateEmailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/;
+  if(!validateEmailReg.test(inputMail)){
+    messageRegister.innerHTML = "El email debería tener las siguientes características: email@ejemplo.algo"
+    messageRegister.classList.add("show-messageError")
+  }else{
+    messageRegister.innerHTML = ""
+    messageRegister.classList.remove("show-messageError")
+  }
+}
+
 export const Register = () => {
   const HomeDiv = document.createElement("div");
   HomeDiv.className = "homeDiv";
@@ -47,40 +62,41 @@ export const Register = () => {
   const backLogin = document.createElement("a");
   backLogin.textContent = "Inicia Sesión";
 
-  const mensajeRegistro = document.createElement("p");
-  mensajeRegistro.className = "mensajeRegistro";
+  const messageRegister = document.createElement("p");
+  messageRegister.className = "mensajeRegistro";
 
   backLogin.addEventListener("click", () => onNavigate("/login"));
 
+  //const email = inputMail.value;
+  //const password = inputPassword.value;
+  //const nameUser = inputName.value;
+
+  //Llamado de la función validatorEmail
+  inputMail.addEventListener("change", () => {
+    validateEmail(inputMail.value, messageRegister)
+  });
+
   buttonRegister.addEventListener("click", () => {
-    const email = inputMail.value;
-    const password = inputPassword.value;
-    const nameUser = inputName.value;
-
-    if (nameUser === "" || email === "" || password === "") {
-      return (mensajeRegistro.innerHTML = "Ingresa los datos solicitados");
+   
+    if (inputName.value === "" || inputMail.value === "" || inputPassword.value === "") {
+      return (messageRegister.innerHTML = "Ingresa los datos solicitados");
     }
-    if (nameUser === "" && nameUser.length < 2) {
-      return (mensajeRegistro.innerHTML = "Tu nombre es muy corto");
+    if (inputName.value.length < 3) {
+      return (messageRegister.innerHTML = "Tu nombre es muy corto: al menos 3 caracteres");
     }
-    const emailRegValido =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (email === "" && !emailRegValido.test(email)) {
-      return (mensajeRegistro.innerHTML = "Email inválido");
+     
+    if (inputPassword.value.length < 6) {
+      return (messageRegister.innerHTML = "Password como mínimo con 6 caracteres");
     }
 
-    if (password === "" && password.length < 6) {
-      return (mensajeRegistro.innerHTML =
-        "Password como mínimo con 6 caracteres");
-    }
-
-    createUserWithEmail(email, password)
+    createUserWithEmail(inputMail.value, inputPassword.value)
       .then((userCredential) => {
         const user = userCredential.user;
         // user.displayName = nameUser;
         const uid = user.uid;
         // debugger;
-        updateProfileUser(nameUser, uid).then(() => console.log('Nombre actualizado'));
+        updateProfileUser(inputName.value, uid)
+        .then(() => console.log('Nombre actualizado'));
         console.log(user);
         console.log('Registro exitoso');
       });
@@ -97,7 +113,7 @@ export const Register = () => {
   formLogin.appendChild(inputMail);
   formLogin.appendChild(inputPassword);
   formLogin.appendChild(buttonRegister);
-  formLogin.appendChild(mensajeRegistro);
+  formLogin.appendChild(messageRegister);
   HomeDiv.appendChild(formLogin);
   HomeDiv.appendChild(textLogin);
   textLogin.appendChild(backLogin);
