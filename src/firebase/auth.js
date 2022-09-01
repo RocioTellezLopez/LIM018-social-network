@@ -12,7 +12,7 @@ import {
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 import {
-  getFirestore, collection, addDoc, getDocs, query, orderBy,
+  getFirestore, collection, addDoc, getDocs, query, orderBy, onSnapshot
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -80,4 +80,7 @@ export const postRef = collection(db, 'post');
 const queryPost = query(postRef, orderBy('dateDescription', 'desc'));
 
 export function getPost() { return getDocs(queryPost); }
+
+export const onGetPost = (callback) =>  onSnapshot(collection(db, 'post'), callback);
+
 
