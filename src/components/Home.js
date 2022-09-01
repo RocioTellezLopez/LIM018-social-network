@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { stateChangedUser, addPost, getPost } from '../firebase/auth.js';
+import { stateChangedUser, addPost, getPost, onGetPost } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
 import setHeader from './Header.js';
 import { signOutUser } from '../lib/index.js';
@@ -71,6 +71,7 @@ export const Home = () => {
   /* ----- Post ----- */
   getPost().then((post) => {
     post.forEach((doc) => {
+      
       const postDescription = doc.data().description;
       const dateDescription = doc.data().dateDescription;
       const nameUser = doc.data().nameUser;
@@ -81,6 +82,8 @@ export const Home = () => {
       nameUserPost.className = 'nameUserPost';
       const dateUserPost = document.createElement('p');
       dateUserPost.className = 'dateUserPost';
+      const descriptionUserPostDiv = document.createElement('div')
+      descriptionUserPostDiv.className = 'descriptionUserPostDiv';
       const descriptionUserPost = document.createElement('p');
       descriptionUserPost.className = 'descriptionUserPost';
 
@@ -90,11 +93,24 @@ export const Home = () => {
 
       divPost.appendChild(nameUserPost);
       divPost.appendChild(dateUserPost);
-      divPost.appendChild(descriptionUserPost);
+      divPost.appendChild(descriptionUserPostDiv);
+      descriptionUserPostDiv.appendChild(descriptionUserPost);
 
       principalContent.appendChild(divPost);
     });
   });
+
+  onGetPost((snapchot) => {
+    snapchot.docChanges().forEach(change => {
+      //const onPost = doc.data();
+      console.log(change);
+      //console.log(onPost);
+      //console.log(callback);
+      console.log('hola');
+      
+    })
+  });
+ 
 
   /* ---------- */
   const navDiv = document.createElement('div');

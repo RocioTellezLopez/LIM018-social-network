@@ -45,8 +45,8 @@ export const Login = () => {
 
   buttonLoginGoogle.addEventListener('click', () => {
     signInWithGoogle()
-      .then((userCredential) => {
-        console.log(userCredential);
+      .then(() => {
+        //console.log(userCredential);
         onNavigate('/home');
       })
       .catch((error) => {
