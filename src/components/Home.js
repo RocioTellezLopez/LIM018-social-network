@@ -69,9 +69,9 @@ export const Home = () => {
   });
 
   /* ----- Post ----- */
-   
+  const containerDivPost = document.createElement('div');
   onGetPost(() => {
-    
+    containerDivPost.innerHTML = '';
   getPost().then((post) => {
     post.forEach((doc) => {
     
@@ -79,6 +79,7 @@ export const Home = () => {
       const dateDescription = doc.data().dateDescription;
       const nameUser = doc.data().nameUser;
 
+      containerDivPost.className = 'containerDivPost'
       const divPost = document.createElement('div');
       divPost.className = 'divPost';
       const nameUserPost = document.createElement('p');
@@ -97,27 +98,56 @@ export const Home = () => {
       divPost.appendChild(nameUserPost);
       divPost.appendChild(dateUserPost);
       divPost.appendChild(descriptionUserPostDiv);
+      
       descriptionUserPostDiv.appendChild(descriptionUserPost);
-
-      principalContent.appendChild(divPost);
+      containerDivPost.appendChild(divPost);
+      principalContent.appendChild(containerDivPost);
     });
   });
   });
- 
-  /*onGetPost((snapchot) => {
-    snapchot.docChanges().forEach(change => {
-      //const onPost = doc.data();
-      console.log(change);
-      //console.log(onPost);
-      //console.log(callback);
-      //const doc = change.doc;
-      //console.log(doc);
-      //if(change.type === 'added') {
-        //addPost(doc.data().description, doc.data().dateDescription, doc.data().nameUser);
-      //console.log('hola');
+  
+  /*onGetPost((snapshot) => { 
+    //while (divPost.firstChild) {
+      //divPost.removeChild(divPost.firstChild);
+    //}
+    //const divPost = document.createElement('div');
+      //  divPost.className = 'divPost';
+    //divPost.innerHTML = '';
+      //console.log('trayendo todos los posts')
+      
+      //while (principalContent.firstChild) {
+        //principalContent.removeChild(principalContent.firstChild)
       //}
-  });
-  });*/
+      snapshot.forEach((doc) => {
+      
+        const postDescription = doc.data().description;
+        const dateDescription = doc.data().dateDescription;
+        const nameUser = doc.data().nameUser;
+
+        const divPost = document.createElement('div');
+        divPost.className = 'divPost';
+        const nameUserPost = document.createElement('p');
+        nameUserPost.className = 'nameUserPost';
+        const dateUserPost = document.createElement('p');
+        dateUserPost.className = 'dateUserPost';
+        const descriptionUserPostDiv = document.createElement('div')
+        descriptionUserPostDiv.className = 'descriptionUserPostDiv';
+        const descriptionUserPost = document.createElement('p');
+        descriptionUserPost.className = 'descriptionUserPost';
+  
+        nameUserPost.textContent = nameUser;
+        dateUserPost.textContent = `${dateDescription.toDate().toDateString()} - ${dateDescription.toDate().toLocaleTimeString()}`;
+        descriptionUserPost.textContent = postDescription;
+  
+        divPost.appendChild(nameUserPost);
+        divPost.appendChild(dateUserPost);
+        divPost.appendChild(descriptionUserPostDiv);
+        descriptionUserPostDiv.appendChild(descriptionUserPost);
+  
+        principalContent.appendChild(divPost);
+      });
+    });*/
+
  
 
   /* ---------- */
