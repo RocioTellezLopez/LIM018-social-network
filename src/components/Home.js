@@ -105,50 +105,6 @@ export const Home = () => {
     });
   });
   });
-  
-  /*onGetPost((snapshot) => { 
-    //while (divPost.firstChild) {
-      //divPost.removeChild(divPost.firstChild);
-    //}
-    //const divPost = document.createElement('div');
-      //  divPost.className = 'divPost';
-    //divPost.innerHTML = '';
-      //console.log('trayendo todos los posts')
-      
-      //while (principalContent.firstChild) {
-        //principalContent.removeChild(principalContent.firstChild)
-      //}
-      snapshot.forEach((doc) => {
-      
-        const postDescription = doc.data().description;
-        const dateDescription = doc.data().dateDescription;
-        const nameUser = doc.data().nameUser;
-
-        const divPost = document.createElement('div');
-        divPost.className = 'divPost';
-        const nameUserPost = document.createElement('p');
-        nameUserPost.className = 'nameUserPost';
-        const dateUserPost = document.createElement('p');
-        dateUserPost.className = 'dateUserPost';
-        const descriptionUserPostDiv = document.createElement('div')
-        descriptionUserPostDiv.className = 'descriptionUserPostDiv';
-        const descriptionUserPost = document.createElement('p');
-        descriptionUserPost.className = 'descriptionUserPost';
-  
-        nameUserPost.textContent = nameUser;
-        dateUserPost.textContent = `${dateDescription.toDate().toDateString()} - ${dateDescription.toDate().toLocaleTimeString()}`;
-        descriptionUserPost.textContent = postDescription;
-  
-        divPost.appendChild(nameUserPost);
-        divPost.appendChild(dateUserPost);
-        divPost.appendChild(descriptionUserPostDiv);
-        descriptionUserPostDiv.appendChild(descriptionUserPost);
-  
-        principalContent.appendChild(divPost);
-      });
-    });*/
-
- 
 
   /* ---------- */
   const navDiv = document.createElement('div');
