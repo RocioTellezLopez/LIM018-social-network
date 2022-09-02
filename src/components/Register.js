@@ -6,8 +6,7 @@ import { createUserWithEmail, updateProfileUser } from "../firebase/auth.js";
 const validateEmail = (inputMail, error) => {
   //debugger;
   const messageRegister = error;
-  const validateEmailReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  //const validateEmailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/;
+  const validateEmailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
   if(!validateEmailReg.test(inputMail)){
     messageRegister.innerHTML = "El email debería tener las siguientes características: email@ejemplo.algo"
     messageRegister.classList.add("show-messageError")
