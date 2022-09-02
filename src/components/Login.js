@@ -43,6 +43,14 @@ export const Login = () => {
   buttonLogin.value = 'Inicia sesion';
   buttonLogin.id = 'buttonLogin';
 
+  const textRegister = document.createElement("p");
+  textRegister.textContent = "No tengo cuenta";
+  textRegister.className = "textRegister";
+  const backRegister = document.createElement("a");
+  backRegister.textContent = "Regístrate";
+
+  backRegister.addEventListener('click', () => onNavigate('/register'));
+
   buttonLoginGoogle.addEventListener('click', () => {
     signInWithGoogle()
       .then(() => {
@@ -85,6 +93,8 @@ export const Login = () => {
   formLogin.appendChild(inputPassword);
   HomeDiv.appendChild(formLogin);
   formLogin.appendChild(buttonLogin);
+  HomeDiv.appendChild(textRegister);
+  textRegister.appendChild(backRegister);
 
   return HomeDiv;
 };
