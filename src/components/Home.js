@@ -1,5 +1,7 @@
 /* eslint-disable import/no-cycle */
-import { stateChangedUser, addPost, getPost, onGetPost } from '../firebase/auth.js';
+import {
+  stateChangedUser, addPost, getPost, onGetPost,
+} from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
 import setHeader from './Header.js';
 import { signOutUser } from '../lib/index.js';
@@ -72,38 +74,38 @@ export const Home = () => {
   const containerDivPost = document.createElement('div');
   onGetPost(() => {
     containerDivPost.innerHTML = '';
-  getPost().then((post) => {
-    post.forEach((doc) => {
-    
-      const postDescription = doc.data().description;
-      const dateDescription = doc.data().dateDescription;
-      const nameUser = doc.data().nameUser;
+    getPost().then((post) => {
+      post.forEach((doc) => {
+        console.log(doc.id)
+        const postDescription = doc.data().description;
+        const dateDescription = doc.data().dateDescription;
+        const nameUser = doc.data().nameUser;
 
-      containerDivPost.className = 'containerDivPost'
-      const divPost = document.createElement('div');
-      divPost.className = 'divPost';
-      const nameUserPost = document.createElement('p');
-      nameUserPost.className = 'nameUserPost';
-      const dateUserPost = document.createElement('p');
-      dateUserPost.className = 'dateUserPost';
-      const descriptionUserPostDiv = document.createElement('div')
-      descriptionUserPostDiv.className = 'descriptionUserPostDiv';
-      const descriptionUserPost = document.createElement('p');
-      descriptionUserPost.className = 'descriptionUserPost';
+        containerDivPost.className = 'containerDivPost';
+        const divPost = document.createElement('div');
+        divPost.className = 'divPost';
+        const nameUserPost = document.createElement('p');
+        nameUserPost.className = 'nameUserPost';
+        const dateUserPost = document.createElement('p');
+        dateUserPost.className = 'dateUserPost';
+        const descriptionUserPostDiv = document.createElement('div');
+        descriptionUserPostDiv.className = 'descriptionUserPostDiv';
+        const descriptionUserPost = document.createElement('p');
+        descriptionUserPost.className = 'descriptionUserPost';
 
-      nameUserPost.textContent = nameUser;
-      dateUserPost.textContent = `${dateDescription.toDate().toDateString()} - ${dateDescription.toDate().toLocaleTimeString()}`;
-      descriptionUserPost.textContent = postDescription;
+        nameUserPost.textContent = nameUser;
+        dateUserPost.textContent = `${dateDescription.toDate().toDateString()} - ${dateDescription.toDate().toLocaleTimeString()}`;
+        descriptionUserPost.textContent = postDescription;
 
-      divPost.appendChild(nameUserPost);
-      divPost.appendChild(dateUserPost);
-      divPost.appendChild(descriptionUserPostDiv);
-      
-      descriptionUserPostDiv.appendChild(descriptionUserPost);
-      containerDivPost.appendChild(divPost);
-      principalContent.appendChild(containerDivPost);
+        divPost.appendChild(nameUserPost);
+        divPost.appendChild(dateUserPost);
+        divPost.appendChild(descriptionUserPostDiv);
+
+        descriptionUserPostDiv.appendChild(descriptionUserPost);
+        containerDivPost.appendChild(divPost);
+        principalContent.appendChild(containerDivPost);
+      });
     });
-  });
   });
 
   /* ---------- */
