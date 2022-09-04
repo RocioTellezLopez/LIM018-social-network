@@ -36,7 +36,6 @@ export const onNavigate = (pathname) => {
   }
   rootDiv.appendChild(routes[pathname]());
 };
-// const component = routes[window.location.pathname];
 
 window.onpopstate = () => {
   const rootDiv = document.getElementById('root');
@@ -48,5 +47,3 @@ window.addEventListener('load', () => {
   const rootDiv = document.getElementById('root');
   rootDiv.appendChild(routes[window.location.pathname]());
 });
-
-// rootDiv.appendChild(routes[window.location.pathname]());

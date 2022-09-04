@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
 * {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -36,8 +38,8 @@ body {
 }
 
 .imgLogoDiv, #imgLogo {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     display: block;
 }
 
@@ -47,15 +49,17 @@ body {
     align-items: center;
 }
 .titleLogo {
-    font-size: 1.8rem;
-    font-family: 'Chicle', sans-serif;
+    font-size: 2.5rem;
+    font-family: 'Chewy', sans-serif;
     text-align: center;
     font-weight: bolder;
-    color: #1ed760;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #1ed760;
+    color: #ffff;
 }
 
 #titleWelcome {
-    color: hsl(141, 76%, 43%);
+    color: hsl(120, 100%, 100%);
 }
 
 .formLogin {
@@ -74,7 +78,7 @@ form input, button {
     border-radius: 10px;
 }
 
-#buttonLogin, #buttonRegister, #buttonPublication {
+#buttonLogin, #buttonRegister{
     margin-top: 2rem;
     padding-left: 0;
     background-color: #1ed760;
@@ -82,7 +86,20 @@ form input, button {
     color: rgb(255, 255, 255);
     cursor: pointer;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 21px;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: #7D7676;
+}
+
+#buttonPublication {
+    margin-top: 2rem;
+    padding-left: 0;
+    background-color: #1ed760;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 .textRegister, .textLogin{
@@ -112,16 +129,21 @@ form input, button {
     justify-content: space-around;
     align-items: center;
 }
+.headerDiv{
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
 
 .logoDiv {
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
 }
 
 .logoDiv img{
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
 }
 
 .logOut, .homeIcon, .publicationIcon, .profileIcon {
@@ -135,30 +157,47 @@ form input, button {
 }
 
 .headerTitle {
-    width: 150px;
-    font-size: 20px;
-    font-family: 'Chicle', cursive;
+    width: 200px;
+    font-size: 23px;
+    font-family: 'Chewy', cursive;
     color: white;
+    -webkit-text-stroke-width: 0.08px;
+    -webkit-text-stroke-color: #9ea09e;
+}
+.headerDiv .logoDiv img {
+    margin: 15px auto;
+    width: 40px;
+    height: 40px;
 }
 
 /* -----Publication----- */
 
-.publicationDiv, .postExample {
+.publicationDiv, .divPost {
     width: 315px;
     height: 120px;
     margin: 20px auto;
     background: #D9D9D9;
     border-radius: 10px;
 }
+.publicationDiv {
+    margin: 60px auto;
+    height: 250px;
+}
 
 .publicationDiv textarea {
     width: 285px;
-    height: 45px;
+    height: 7rem;
     border-radius: 10px;
-    margin: 10px 15px;
-    font-size: 1rem;
+    margin: 4px 15px;
+    font-size: 0.8rem;
     resize: none;
     padding: 0.4rem;
+}
+
+.publicationDiv p {
+    font-size: 1rem;
+    font-weight: bolder;
+    padding: 10px;
 }
 
 #buttonPublication {
@@ -167,9 +206,10 @@ form input, button {
     margin-top: 0;
     margin-left: 175px;
     margin-bottom: 10px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bolder;
     border: none;
+    
 }
 
 .navDiv {
@@ -177,6 +217,42 @@ form input, button {
     position: fixed;
     bottom: 0;
     left: 0;
+}
+
+.mensajeRegistro{
+    color: red;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.divPost {
+    background: #D7FFC9;
+    margin: 10px auto;
+    padding: 10px; 
+    height: auto;
+}
+
+.nameUserPost {
+    font-size: 1rem;
+    font-weight: bolder;
+    margin: 5px auto;
+}
+
+.dateUserPost {
+    font-size: 0.8rem;
+    color: #7D7676;
+    margin: 5px auto;
+}
+.descriptionUserPostDiv {
+    background: white;
+    border-radius: 10px;
+}
+.descriptionUserPost {
+    font-size: 1rem;
+    padding: 10px 2px;
+    margin: 8px auto;
+    word-wrap: break-word;
 }
 
 
@@ -192,7 +268,7 @@ form input, button {
         height: 100vh;
         margin-right: 10rem;
     }
-
+    
     #welcome {
         background: none;
         display: flex;

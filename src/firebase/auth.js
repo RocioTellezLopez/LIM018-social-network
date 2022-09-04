@@ -7,8 +7,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
+  updateProfile,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
+import {
+  getFirestore, collection, addDoc, getDocs, query, orderBy, onSnapshot
+} from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -36,17 +41,6 @@ const auth = getAuth();
 
 /* ---------- Firebase Auth - GoogleAuthProvider ---------- */
 
-signInWithPopup(auth, provider)
-  .then((result) => {
-    // eslint-disable-next-line no-unused-vars
-    const user = result.user;
-  }).catch((error) => {
-    // eslint-disable-next-line no-unused-vars
-    const errorCode = error.code;
-    // eslint-disable-next-line no-unused-vars
-    const errorMessage = error.message;
-  });
-
 export const signInWithGoogle = () => signInWithPopup(auth, provider);
 
 /* ---------- Firebase Auth - createUserWithEmailAndPassword ---------- */
@@ -61,4 +55,32 @@ export const signInWithEmail = (email, password) => signInWithEmailAndPassword(a
 
 /* ---------- Firebase Auth - signOut ---------- */
 
-export const signOutLogin = () => signOut(auth);
+export function signOutLogin() { return signOut(auth); }
+
+/* ----- FireStore ----- */
+
+export function stateChangedUser(callback) { return onAuthStateChanged(auth, callback); }
+
+export const db = getFirestore(app);
+
+export function addPost(publicacion) { return addDoc(collection(db, 'post'), publicacion); }
+
+/* ----- Update Profile */
+
+export function updateProfileUser(userName, userId) {
+  return updateProfile(auth.currentUser, {
+    displayName: userName,
+    uid: userId,
+  });
+}
+
+
+export const postRef = collection(db, 'post');
+// export function getPost() { return getDocs(postRef); }
+const queryPost = query(postRef, orderBy('dateDescription', 'desc'));
+
+export function getPost() { return getDocs(queryPost); }
+
+export const onGetPost = (callback) =>  onSnapshot(collection(db, 'post'), callback);
+
+
