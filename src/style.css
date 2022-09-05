@@ -9,7 +9,6 @@
 body {
     margin: 0;
     padding: 0;
-    width: 100vw;
 }
 
 .homeDiv {
@@ -47,6 +46,7 @@ body {
     padding: 100px 50px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .titleLogo {
     font-size: 2.5rem;
@@ -117,8 +117,7 @@ form input, button {
 /* -----Home----- */
 .homeView {
     background: none;
-    position: relative;
-    
+    position: relative; 
 }
 
 .headerDiv, .navDiv {
@@ -172,6 +171,13 @@ form input, button {
 
 /* -----Publication----- */
 
+.principalContent {
+
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+}
+
 .publicationDiv, .divPost {
     width: 315px;
     height: 120px;
@@ -180,18 +186,18 @@ form input, button {
     border-radius: 10px;
 }
 .publicationDiv {
-    margin: 60px auto;
-    height: 250px;
+    margin: 20px auto;
+    height: 200px;
 }
 
 .publicationDiv textarea {
     width: 285px;
-    height: 7rem;
+    height: 6rem;
     border-radius: 10px;
     margin: 4px 15px;
-    font-size: 0.8rem;
     resize: none;
     padding: 0.4rem;
+    font-size: 1rem;
 }
 
 .publicationDiv p {
@@ -208,8 +214,7 @@ form input, button {
     margin-bottom: 10px;
     font-size: 0.9rem;
     font-weight: bolder;
-    border: none;
-    
+    border: none;   
 }
 
 .navDiv {
@@ -237,6 +242,7 @@ form input, button {
     font-size: 1rem;
     font-weight: bolder;
     margin: 5px auto;
+    margin-left: 0;
 }
 
 .dateUserPost {
@@ -255,6 +261,19 @@ form input, button {
     word-wrap: break-word;
 }
 
+.divHeaderPost {
+    display: flex;
+    flex-direction: row;
+}
+
+.containerDivPost {
+    margin-bottom: 50px;
+} 
+.deletePostDiv img {
+    width: 25px;
+    display: none;
+}
+
 
 @media only screen and (min-width: 768px) {
     .homeDiv {
@@ -265,7 +284,7 @@ form input, button {
 
     .homeDiv img {
         display: block;
-        height: 100vh;
+        /* height: 100vh; */
         margin-right: 10rem;
     }
     
@@ -285,5 +304,13 @@ form input, button {
 
     .buttonDiv button {
         margin: 10px;
+    }
+
+    .homeView {
+        background: none;
+    }
+
+    .deletePostDiv img {
+        margin-right: 0;
     }
 }
