@@ -66,11 +66,6 @@ export const Register = () => {
 
   backLogin.addEventListener('click', () => onNavigate('/login'));
 
-  // const email = inputMail.value;
-  // const password = inputPassword.value;
-  // const nameUser = inputName.value;
-
-  // Llamado de la función validatorEmail
   inputMail.addEventListener('change', () => {
     validateEmail(inputMail.value, messageRegister);
   });
@@ -99,7 +94,6 @@ export const Register = () => {
         console.log('Registro exitoso');
       });
     onNavigate('/login');
-    // setTimeout(() => onNavigate('/login'), 1000);
   });
 
   imgLogoDiv.appendChild(imgLogo);

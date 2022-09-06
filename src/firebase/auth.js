@@ -12,7 +12,7 @@ import {
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 import {
-  getFirestore, collection, addDoc, getDocs, query, orderBy, onSnapshot, deleteDoc, doc
+  getFirestore, collection, addDoc, getDocs, query, orderBy, onSnapshot, doc, deleteDoc, updateDoc,
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -31,13 +31,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-// eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig);
 
 /* ---------- Firebase Auth ---------- */
 
 const provider = new GoogleAuthProvider();
-const auth = getAuth();
+export const auth = getAuth();
 
 /* ---------- Firebase Auth - GoogleAuthProvider ---------- */
 
@@ -75,13 +74,17 @@ export function updateProfileUser(userName, userId) {
 }
 
 export const postRef = collection(db, 'post');
-// export function getPost() { return getDocs(postRef); }
+
 const queryPost = query(postRef, orderBy('dateDescription', 'desc'));
 
 export function getPost() { return getDocs(queryPost); }
 
 export const onGetPost = (callback) => onSnapshot(collection(db, 'post'), callback);
 
-export function deletePost(idPost) { return deleteDoc(doc(db, 'post', idPost))};
+export function deletePost(idPost) { return deleteDoc(doc(db, 'post', idPost)); }
 
-deletePost('EI6Tbdd78NIIL9TlDM44');
+export function editPost(idpost, editText) {
+  return updateDoc(doc(db, 'post', idpost), {
+    description: editText,
+  });
+}

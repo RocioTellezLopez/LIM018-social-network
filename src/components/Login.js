@@ -43,25 +43,24 @@ export const Login = () => {
   buttonLogin.value = 'Inicia sesion';
   buttonLogin.id = 'buttonLogin';
 
-  const textRegister = document.createElement("p");
-  textRegister.textContent = "No tengo cuenta";
-  textRegister.className = "textRegister";
-  const backRegister = document.createElement("a");
-  backRegister.textContent = "Regístrate";
+  const textRegister = document.createElement('p');
+  textRegister.textContent = 'No tengo cuenta';
+  textRegister.className = 'textRegister';
+  const backRegister = document.createElement('a');
+  backRegister.textContent = 'Regístrate';
 
   backRegister.addEventListener('click', () => onNavigate('/register'));
 
   buttonLoginGoogle.addEventListener('click', () => {
     signInWithGoogle()
       .then(() => {
-        //console.log(userCredential);
         onNavigate('/home');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+      });
   });
-});
 
   buttonLogin.addEventListener('click', () => {
     const email = inputMail.value;
@@ -71,15 +70,11 @@ export const Login = () => {
       .then((userCredential) => {
       // Signed in
         const user = userCredential.user;
-        // const nameUser = user.displayName;
-        console.log(user);
-        // console.log(nameUser);
         onNavigate('/home');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(error, errorCode, errorMessage);
       });
   });
 

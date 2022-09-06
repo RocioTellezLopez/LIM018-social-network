@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import {
-  stateChangedUser, addPost, getPost, onGetPost,
+  stateChangedUser, addPost, getPost, onGetPost, deletePost, auth, editPost,
 } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
 import setHeader from './Header.js';
@@ -8,7 +8,6 @@ import { signOutUser } from '../lib/index.js';
 
 export const Home = () => {
   const HomeDiv = document.createElement('div');
-  // HomeDiv.classList = 'homeDiv';
   HomeDiv.classList = 'homeDiv homeView';
 
   /* ---------- */
@@ -33,16 +32,6 @@ export const Home = () => {
   buttonPublication.textContent = 'Publicar';
   buttonPublication.id = 'buttonPublication';
 
-  // buttonPublication.addEventListener('click', () => {
-  //   addPost({
-  //     nameUser: displayName;
-  //     description: textPublication.value,
-  //     dateDescription: new Date(),
-  //   }).then(() => {
-  //     textPublication.value = '';
-  //   });
-  // });
-
   stateChangedUser((user) => {
     const userName = document.createElement('p');
     if (user) {
@@ -58,34 +47,58 @@ export const Home = () => {
           nameUser: displayName,
           description: textPublication.value,
           dateDescription: new Date(),
+          uid,
         }).then(() => {
           textPublication.value = '';
         });
       });
     } else {
       // User is signed out
-      console.log('el usuario no inicio sesion');
-
-      // onNavigate('/');
+      onNavigate('/');
     }
   });
 
   /* ----- Post ----- */
   const containerDivPost = document.createElement('div');
+  containerDivPost.className = 'containerDivPost';
   onGetPost(() => {
     containerDivPost.innerHTML = '';
     getPost().then((post) => {
       post.forEach((doc) => {
-        console.log(doc.id)
         const postDescription = doc.data().description;
         const dateDescription = doc.data().dateDescription;
         const nameUser = doc.data().nameUser;
+        const uidUserPost = doc.data().uid;
+        const idPost = doc.id;
 
-        containerDivPost.className = 'containerDivPost';
         const divPost = document.createElement('div');
         divPost.className = 'divPost';
+
+        const divHeaderPost = document.createElement('div');
+        divHeaderPost.className = 'divHeaderPost';
         const nameUserPost = document.createElement('p');
         nameUserPost.className = 'nameUserPost';
+
+        const editPostDiv = document.createElement('div');
+        editPostDiv.classList = 'editPost';
+        const editIcon = document.createElement('img');
+        editIcon.src = '../img/pencil.png';
+        const deletePostDiv = document.createElement('div');
+        deletePostDiv.className = 'deletePostDiv';
+        const deleteIcon = document.createElement('img');
+        deleteIcon.src = '../img/cross-circle.png';
+
+        divHeaderPost.appendChild(nameUserPost);
+        divHeaderPost.appendChild(editPostDiv);
+        editPostDiv.appendChild(editIcon);
+        divHeaderPost.appendChild(deletePostDiv);
+        deletePostDiv.appendChild(deleteIcon);
+
+        if (uidUserPost === auth.currentUser.uid) {
+          deleteIcon.style.display = 'block';
+          editIcon.style.display = 'block';
+        }
+
         const dateUserPost = document.createElement('p');
         dateUserPost.className = 'dateUserPost';
         const descriptionUserPostDiv = document.createElement('div');
@@ -97,7 +110,24 @@ export const Home = () => {
         dateUserPost.textContent = `${dateDescription.toDate().toDateString()} - ${dateDescription.toDate().toLocaleTimeString()}`;
         descriptionUserPost.textContent = postDescription;
 
-        divPost.appendChild(nameUserPost);
+        deletePostDiv.addEventListener('click', () => {
+          if (uidUserPost === auth.currentUser.uid) {
+            deletePost(idPost);
+          } else {
+            alert('No puedes eliminar este post, por que no te pertenece!😎');
+          }
+        });
+
+        editPostDiv.addEventListener('click', () => {
+          if (uidUserPost === auth.currentUser.uid) {
+            const text = postDescription;
+            editModal(containerDivPost, text, idPost);
+          } else {
+            alert('No puedes editar este post, por que no te pertenece!😢');
+          }
+        });
+
+        divPost.appendChild(divHeaderPost);
         divPost.appendChild(dateUserPost);
         divPost.appendChild(descriptionUserPostDiv);
 
@@ -107,7 +137,6 @@ export const Home = () => {
       });
     });
   });
-
   /* ---------- */
   const navDiv = document.createElement('div');
   navDiv.className = 'navDiv';
@@ -126,15 +155,6 @@ export const Home = () => {
   profileIcon.className = 'profileIcon';
   const profileIconImg = document.createElement('img');
   profileIconImg.src = '../img/user-white.png';
-
-  // logOut.addEventListener('click', () => {
-  //   signOutLogin()
-  //     .then((result) => {
-  //       // eslint-disable-next-line no-console
-  //       console.log('cerraste sesion');
-  //       onNavigate('/');
-  //     });
-  // });
 
   homeIcon.appendChild(homeIconImg);
   publicationIcon.appendChild(publicationIconImg);
@@ -155,3 +175,28 @@ export const Home = () => {
 
   return HomeDiv;
 };
+
+function editModal(div, text, idPost) {
+  const divBlock = document.createElement('div');
+  divBlock.className = 'divBlock';
+  const divPost = document.createElement('div');
+  divPost.className = 'divPost divEditPost';
+  const closeEditModal = document.createElement('div');
+  closeEditModal.textContent = '❌';
+  closeEditModal.className = 'closeEditModal';
+  const textEdit = document.createElement('textarea');
+  textEdit.className = 'textEdit';
+  textEdit.value = text;
+  const buttonSave = document.createElement('button');
+  buttonSave.textContent = 'Guardar';
+  buttonSave.id = 'buttonSave';
+
+  closeEditModal.addEventListener('click', () => { divBlock.style.display = 'none'; });
+  buttonSave.addEventListener('click', () => editPost(idPost, textEdit.value));
+
+  divPost.appendChild(closeEditModal);
+  divPost.appendChild(textEdit);
+  divPost.appendChild(buttonSave);
+  divBlock.appendChild(divPost);
+  div.appendChild(divBlock);
+}

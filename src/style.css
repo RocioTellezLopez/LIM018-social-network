@@ -9,7 +9,6 @@
 body {
     margin: 0;
     padding: 0;
-    width: 100vw;
 }
 
 .homeDiv {
@@ -47,6 +46,7 @@ body {
     padding: 100px 50px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .titleLogo {
     font-size: 2.5rem;
@@ -91,7 +91,7 @@ form input, button {
     -webkit-text-stroke-color: #7D7676;
 }
 
-#buttonPublication {
+#buttonPublication, #buttonSave {
     margin-top: 2rem;
     padding-left: 0;
     background-color: #1ed760;
@@ -99,7 +99,6 @@ form input, button {
     color: rgb(255, 255, 255);
     cursor: pointer;
     font-weight: bold;
-    font-size: 25px;
 }
 
 .textRegister, .textLogin{
@@ -117,8 +116,7 @@ form input, button {
 /* -----Home----- */
 .homeView {
     background: none;
-    position: relative;
-    
+    position: relative; 
 }
 
 .headerDiv, .navDiv {
@@ -172,6 +170,13 @@ form input, button {
 
 /* -----Publication----- */
 
+.principalContent {
+
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+}
+
 .publicationDiv, .divPost {
     width: 315px;
     height: 120px;
@@ -180,18 +185,18 @@ form input, button {
     border-radius: 10px;
 }
 .publicationDiv {
-    margin: 60px auto;
-    height: 250px;
+    margin: 20px auto;
+    height: 200px;
 }
 
-.publicationDiv textarea {
+.publicationDiv textarea, .textEdit {
     width: 285px;
-    height: 7rem;
+    height: 6rem;
     border-radius: 10px;
     margin: 4px 15px;
-    font-size: 0.8rem;
     resize: none;
     padding: 0.4rem;
+    font-size: 1rem;
 }
 
 .publicationDiv p {
@@ -208,8 +213,7 @@ form input, button {
     margin-bottom: 10px;
     font-size: 0.9rem;
     font-weight: bolder;
-    border: none;
-    
+    border: none;   
 }
 
 .navDiv {
@@ -237,6 +241,7 @@ form input, button {
     font-size: 1rem;
     font-weight: bolder;
     margin: 5px auto;
+    margin-left: 0;
 }
 
 .dateUserPost {
@@ -255,6 +260,53 @@ form input, button {
     word-wrap: break-word;
 }
 
+.divHeaderPost {
+    display: flex;
+    flex-direction: row;
+}
+
+.containerDivPost {
+    margin-bottom: 50px;
+} 
+.deletePostDiv img, .editPost img {
+    width: 25px;
+    display: none;
+    margin: auto 6px;
+    /* background-color: #7D7676; */
+}
+
+.divBlock {
+    height: 86vh;
+    width: 100vw;
+    margin: 50px auto;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.divEditPost {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textEdit {
+    margin: 10px auto;
+}
+
+#buttonSave {
+    width: 285px;
+}
+
+.closeEditModal {
+    font-size: 20px;
+    width: 30px;
+    margin-left: 250px;
+    text-align: right;
+    cursor: pointer;
+}
 
 @media only screen and (min-width: 768px) {
     .homeDiv {
@@ -265,7 +317,7 @@ form input, button {
 
     .homeDiv img {
         display: block;
-        height: 100vh;
+        /* height: 100vh; */
         margin-right: 10rem;
     }
     
@@ -285,5 +337,19 @@ form input, button {
 
     .buttonDiv button {
         margin: 10px;
+    }
+
+    .homeView {
+        background: none;
+    }
+
+    .deletePostDiv img {
+        margin-right: 0;
+        display: none;
+    }
+
+    .editPost img {
+        margin-right: 10px;
+        display: none;
     }
 }
