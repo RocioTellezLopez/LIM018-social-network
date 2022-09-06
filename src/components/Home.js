@@ -81,22 +81,22 @@ export const Home = () => {
 
         const editPostDiv = document.createElement('div');
         editPostDiv.classList = 'editPost';
-        const editIcon = document.createElement('img');
-        editIcon.src = '../img/pencil.png';
+        // const editIcon = document.createElement('img');
+        // editIcon.src = '../img/pencil.png';
         const deletePostDiv = document.createElement('div');
         deletePostDiv.className = 'deletePostDiv';
-        const deleteIcon = document.createElement('img');
-        deleteIcon.src = '../img/cross-circle.png';
+        // const deleteIcon = document.createElement('img');
+        // deleteIcon.src = '../img/cross-circle.png';
 
         divHeaderPost.appendChild(nameUserPost);
         divHeaderPost.appendChild(editPostDiv);
-        editPostDiv.appendChild(editIcon);
+        // editPostDiv.appendChild(editIcon);
         divHeaderPost.appendChild(deletePostDiv);
-        deletePostDiv.appendChild(deleteIcon);
+        // deletePostDiv.appendChild(deleteIcon);
 
         if (uidUserPost === auth.currentUser.uid) {
-          deleteIcon.style.display = 'block';
-          editIcon.style.display = 'block';
+          deletePostDiv.style.display = 'block';
+          editPostDiv.style.display = 'block';
         }
 
         const dateUserPost = document.createElement('p');
@@ -143,22 +143,22 @@ export const Home = () => {
 
   const homeIcon = document.createElement('div');
   homeIcon.className = 'homeIcon';
-  const homeIconImg = document.createElement('img');
-  homeIconImg.src = '../img/home-free.png';
+  // const homeIconImg = document.createElement('img');
+  // homeIconImg.src = '../img/home-free.png';
 
   const publicationIcon = document.createElement('div');
   publicationIcon.className = 'publicationIcon';
-  const publicationIconImg = document.createElement('img');
-  publicationIconImg.src = '../img/edit-free-icon.png';
+  // const publicationIconImg = document.createElement('img');
+  // publicationIconImg.src = '../img/edit-free-icon.png';
 
   const profileIcon = document.createElement('div');
   profileIcon.className = 'profileIcon';
-  const profileIconImg = document.createElement('img');
-  profileIconImg.src = '../img/user-white.png';
+  // const profileIconImg = document.createElement('img');
+  // profileIconImg.src = '../img/user-white.png';
 
-  homeIcon.appendChild(homeIconImg);
-  publicationIcon.appendChild(publicationIconImg);
-  profileIcon.appendChild(profileIconImg);
+  // homeIcon.appendChild(homeIconImg);
+  // publicationIcon.appendChild(publicationIconImg);
+  // profileIcon.appendChild(profileIconImg);
 
   navDiv.appendChild(homeIcon);
   navDiv.appendChild(publicationIcon);
