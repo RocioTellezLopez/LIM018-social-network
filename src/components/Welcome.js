@@ -7,7 +7,7 @@ export const Welcome = () => {
   homeDiv.id = 'welcome';
 
   const imgFood = document.createElement('img');
-  imgFood.src = '../img/heather-food.jpg';
+  imgFood.src = './img/heather-food.jpg';
   imgFood.alt = 'Healthy food';
 
   const welcomeDiv = document.createElement('div');
@@ -19,7 +19,7 @@ export const Welcome = () => {
   const imgLogoDiv = document.createElement('div');
   imgLogoDiv.className = 'imgLogoDiv';
   const imgLogo = document.createElement('img');
-  imgLogo.src = '../img/comida-sana-green.png';
+  imgLogo.src = './img/comida-sana-green.png';
   imgLogo.id = 'imgLogo';
 
   const titleLogo = document.createElement('h1');
