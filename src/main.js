@@ -10,7 +10,7 @@ import { Login } from './components/Login.js';
 
 const routes = {
   /* route github pages */
-  '/LIM018-social-network/src': Welcome,
+  '/LIM018-social-network/src/': Welcome,
   '/LIM018-social-network/src/register': Register,
   '/LIM018-social-network/src/login': Login,
   '/LIM018-social-network/src/home': Home,
