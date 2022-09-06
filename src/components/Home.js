@@ -82,11 +82,11 @@ export const Home = () => {
         const editPostDiv = document.createElement('div');
         editPostDiv.classList = 'editPost';
         const editIcon = document.createElement('img');
-        editIcon.src = '../img/pencil.png';
+        editIcon.src = './img/pencil.png';
         const deletePostDiv = document.createElement('div');
         deletePostDiv.className = 'deletePostDiv';
         const deleteIcon = document.createElement('img');
-        deleteIcon.src = '../img/cross-circle.png';
+        deleteIcon.src = './img/cross-circle.png';
 
         divHeaderPost.appendChild(nameUserPost);
         divHeaderPost.appendChild(editPostDiv);
@@ -144,17 +144,17 @@ export const Home = () => {
   const homeIcon = document.createElement('div');
   homeIcon.className = 'homeIcon';
   const homeIconImg = document.createElement('img');
-  homeIconImg.src = '../img/home-free.png';
+  homeIconImg.src = './img/home-free.png';
 
   const publicationIcon = document.createElement('div');
   publicationIcon.className = 'publicationIcon';
   const publicationIconImg = document.createElement('img');
-  publicationIconImg.src = '../img/edit-free-icon.png';
+  publicationIconImg.src = './img/edit-free-icon.png';
 
   const profileIcon = document.createElement('div');
   profileIcon.className = 'profileIcon';
   const profileIconImg = document.createElement('img');
-  profileIconImg.src = '../img/user-white.png';
+  profileIconImg.src = './img/user-white.png';
 
   homeIcon.appendChild(homeIconImg);
   publicationIcon.appendChild(publicationIconImg);

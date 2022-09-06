@@ -12,7 +12,7 @@ export const Login = () => {
   const imgLogoDiv = document.createElement('div');
   imgLogoDiv.className = 'imgLogoDiv';
   const imgLogo = document.createElement('img');
-  imgLogo.src = '../img/comida-sana-green.png';
+  imgLogo.src = './img/comida-sana-green.png';
   imgLogo.id = 'imgLogo';
 
   const titleLogo = document.createElement('h1');
