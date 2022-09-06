@@ -91,7 +91,7 @@ form input, button {
     -webkit-text-stroke-color: #7D7676;
 }
 
-#buttonPublication {
+#buttonPublication, #buttonSave {
     margin-top: 2rem;
     padding-left: 0;
     background-color: #1ed760;
@@ -99,7 +99,6 @@ form input, button {
     color: rgb(255, 255, 255);
     cursor: pointer;
     font-weight: bold;
-    font-size: 25px;
 }
 
 .textRegister, .textLogin{
@@ -190,7 +189,7 @@ form input, button {
     height: 200px;
 }
 
-.publicationDiv textarea {
+.publicationDiv textarea, .textEdit {
     width: 285px;
     height: 6rem;
     border-radius: 10px;
@@ -269,11 +268,45 @@ form input, button {
 .containerDivPost {
     margin-bottom: 50px;
 } 
-.deletePostDiv img {
+.deletePostDiv img, .editPost img {
     width: 25px;
     display: none;
+    margin: auto 6px;
+    /* background-color: #7D7676; */
 }
 
+.divBlock {
+    height: 86vh;
+    width: 100vw;
+    margin: 50px auto;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.divEditPost {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textEdit {
+    margin: 10px auto;
+}
+
+#buttonSave {
+    width: 285px;
+}
+
+.closeEditModal {
+    font-size: 20px;
+    width: 30px;
+    margin-left: 250px;
+    text-align: right;
+    cursor: pointer;
+}
 
 @media only screen and (min-width: 768px) {
     .homeDiv {
@@ -312,5 +345,11 @@ form input, button {
 
     .deletePostDiv img {
         margin-right: 0;
+        display: none;
+    }
+
+    .editPost img {
+        margin-right: 10px;
+        display: none;
     }
 }
