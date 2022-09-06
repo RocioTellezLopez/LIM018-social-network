@@ -10,10 +10,10 @@ export const Login = () => {
   const logoTitleDiv = document.createElement('div');
   logoTitleDiv.className = 'logoTitleDiv';
   const imgLogoDiv = document.createElement('div');
-  imgLogoDiv.className = 'imgLogoDiv';
-  const imgLogo = document.createElement('img');
-  imgLogo.src = './img/comida-sana-green.png';
-  imgLogo.id = 'imgLogo';
+  imgLogoDiv.className = 'imgLogoDiv imgLogo';
+  // const imgLogo = document.createElement('img');
+  // imgLogo.src = '../img/comida-sana-green.png';
+  // imgLogo.id = 'imgLogo';
 
   const titleLogo = document.createElement('h1');
   titleLogo.textContent = 'HEALTHY FOOD LOVERS';
@@ -78,7 +78,7 @@ export const Login = () => {
       });
   });
 
-  imgLogoDiv.appendChild(imgLogo);
+  // imgLogoDiv.appendChild(imgLogo);
   logoTitleDiv.appendChild(imgLogoDiv);
   logoTitleDiv.appendChild(titleLogo);
   HomeDiv.appendChild(logoTitleDiv);
