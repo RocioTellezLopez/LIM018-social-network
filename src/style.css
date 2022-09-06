@@ -36,21 +36,22 @@ body {
     padding: 3.5rem;
 }
 
-.imgLogoDiv, #imgLogo {
+.imgLogoDiv {
     width: 70px;
     height: 70px;
     display: block;
-    background: url('../img/comida-sana-green.png');
+    background: url('./img/comida-sana-green.png');
     background-size: cover;
 }
 
 .logoTitleDiv {
-    padding: 100px 50px;
+    padding: 100px 30px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .titleLogo {
+    width: 240px;
     font-size: 2.5rem;
     font-family: 'Chewy', sans-serif;
     text-align: center;
