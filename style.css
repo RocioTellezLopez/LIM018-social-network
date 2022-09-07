@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.homeDiv {
+    height: 100vh;
+    margin: auto;
+    background:  hsl(130, 100%, 70%) url('./img/food-background.png');
+    background-blend-mode: lighten;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.homeDiv img {
+    display: none;
+}
+
+#welcome {
+    background:  hsl(0, 0%, 70%) url('./img/heather-food.jpg');
+    background-blend-mode: lighten;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.buttonDiv {
+    margin-top: 5rem;
+    padding: 3.5rem;
+}
+
+.imgLogoDiv {
+    width: 70px;
+    height: 70px;
+    display: block;
+    background: url('./img/comida-sana-green.png');
+    background-size: cover;
+}
+
+.logoTitleDiv {
+    padding: 100px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.titleLogo {
+    width: 240px;
+    font-size: 2.5rem;
+    font-family: 'Chewy', sans-serif;
+    text-align: center;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #1ed760;
+    color: #ffff;
+}
+
+#titleWelcome {
+    color: hsl(120, 100%, 100%);
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+}
+
+form input, button {
+    width: 260px;
+    height: 40px;
+    margin: 0.5rem auto;
+    padding-left: 2rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgb(125, 118, 118);
+    border-radius: 10px;
+}
+
+#buttonLogin, #buttonRegister{
+    margin-top: 2rem;
+    padding-left: 0;
+    background-color: #1ed760;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 21px;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: #7D7676;
+}
+
+#buttonPublication, #buttonSave {
+    margin-top: 2rem;
+    padding-left: 0;
+    background-color: #1ed760;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.textRegister, .textLogin{
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.textRegister a, .textLogin a {
+    font-size: 0.9rem;
+    margin-left: 0.4rem;
+    color: rgb(15, 58, 169);
+}
+/* -----Home----- */
+.homeView {
+    background: none;
+    position: relative; 
+}
+
+.headerDiv, .navDiv {
+    height: 50px;
+    background: #1ed760;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.headerDiv{
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.logoDiv {
+    width: 40px;
+    height: 40px;
+    background: url('./img/comida-sana-white.png');
+    background-size: cover;
+}
+
+/* .logoDiv img{
+    display: block;
+    width: 70px;
+    height: 70px;
+} */
+
+.logOut, .homeIcon, .publicationIcon, .profileIcon {
+    width: 30px;
+    height: 30px;
+}
+
+.logOut {
+    background: url('./img/exit-free-icon.png');
+    background-size: cover;
+}
+
+.homeIcon {
+    background: url('./img/home-free.png');
+    background-size: cover;
+}
+
+.publicationIcon{
+    background: url('./img/edit-free-icon.png');
+    background-size: cover;
+}
+.profileIcon {
+    background: url('./img/user-white.png');
+    background-size: cover;
+}
+
+.headerTitle {
+    width: 200px;
+    font-size: 23px;
+    font-family: 'Chewy', cursive;
+    color: white;
+    -webkit-text-stroke-width: 0.08px;
+    -webkit-text-stroke-color: #9ea09e;
+}
+.headerDiv .logoDiv img {
+    margin: 15px auto;
+    width: 40px;
+    height: 40px;
+}
+
+/* -----Publication----- */
+
+.principalContent {
+
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+}
+
+.publicationDiv, .divPost {
+    width: 315px;
+    height: 120px;
+    margin: 20px auto;
+    background: #D9D9D9;
+    border-radius: 10px;
+}
+.publicationDiv {
+    margin: 20px auto;
+    height: 200px;
+}
+
+.publicationDiv textarea, .textEdit {
+    width: 285px;
+    height: 6rem;
+    border-radius: 10px;
+    margin: 4px 15px;
+    resize: none;
+    padding: 0.4rem;
+    font-size: 1rem;
+}
+
+.publicationDiv p {
+    font-size: 1rem;
+    font-weight: bolder;
+    padding: 10px;
+}
+
+#buttonPublication {
+    width: 125px;
+    background-color: #1ed760;
+    margin-top: 0;
+    margin-left: 175px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: bolder;
+    border: none;   
+}
+
+.navDiv {
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.mensajeRegistro{
+    color: red;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.divPost {
+    background: #D7FFC9;
+    margin: 10px auto;
+    padding: 10px; 
+    height: auto;
+}
+
+.nameUserPost {
+    font-size: 1rem;
+    font-weight: bolder;
+    margin: 5px auto;
+    margin-left: 0;
+}
+
+.dateUserPost {
+    font-size: 0.8rem;
+    color: #7D7676;
+    margin: 5px auto;
+}
+.descriptionUserPostDiv {
+    background: white;
+    border-radius: 10px;
+}
+.descriptionUserPost {
+    font-size: 1rem;
+    padding: 10px 2px;
+    margin: 8px auto;
+    word-wrap: break-word;
+}
+
+.divHeaderPost {
+    display: flex;
+    flex-direction: row;
+}
+
+.containerDivPost {
+    margin-bottom: 50px;
+} 
+.deletePostDiv, .editPost {
+    width: 25px;
+    height: 25px;
+    display: none;
+    margin: auto 6px;
+}
+
+.editPost {
+    background: url('./img/pencil.png');
+    background-size: cover;
+}
+.deletePostDiv {
+    background: url('./img/cross-circle.png');
+    background-size: cover;
+}
+
+.divBlock {
+    height: 86vh;
+    width: 100vw;
+    margin: 50px auto;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.divEditPost {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textEdit {
+    margin: 10px auto;
+}
+
+#buttonSave {
+    width: 285px;
+}
+
+.closeEditModal {
+    font-size: 20px;
+    width: 30px;
+    margin-left: 250px;
+    text-align: right;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+    .homeDiv {
+        background: hsl(130, 90%, 75%) url('./img/food-backgroundDesktop.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    /* .homeDiv img {
+        display: block;
+        margin-right: 10rem;
+    } */
+
+    .imgFood {
+        width: 600px;
+        height: 100vh;
+        background: url('./img/heather-food.jpg');
+        background-size: cover;
+        margin-right: 50px;
+    }
+    
+    #welcome {
+        background: none;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .buttonDiv {
+        margin: 3rem;
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        margin-top: 5rem;
+    }
+
+    .buttonDiv button {
+        margin: 10px;
+    }
+
+    .homeView {
+        background: none;
+    }
+
+    .deletePostDiv img {
+        margin-right: 0;
+        display: none;
+    }
+
+    .editPost img {
+        margin-right: 10px;
+        display: none;
+    }
+}
