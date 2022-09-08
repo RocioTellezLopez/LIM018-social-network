@@ -3,9 +3,10 @@ import { onNavigate } from '../main.js';
 import { createUserWithEmail, updateProfileUser } from '../firebase/auth.js';
 
 // Función validación de email, inputMail
-const validateEmail = (inputMail, error) => {
+const validateEmail = (inputMail, mensaje) => {
   // debugger;
-  const messageRegister = error;
+  const messageRegister = mensaje;
+  // eslint-disable-next-line no-useless-escape
   const validateEmailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
   if (!validateEmailReg.test(inputMail)) {
     messageRegister.innerHTML = 'El email debería tener las siguientes características: email@ejemplo.algo';
@@ -70,15 +71,19 @@ export const Register = () => {
     validateEmail(inputMail.value, messageRegister);
   });
 
+  // eslint-disable-next-line consistent-return
   buttonRegister.addEventListener('click', () => {
     if (inputName.value === '' || inputMail.value === '' || inputPassword.value === '') {
+      // eslint-disable-next-line no-return-assign
       return (messageRegister.innerHTML = 'Ingresa los datos solicitados');
     }
     if (inputName.value.length < 3) {
+      // eslint-disable-next-line no-return-assign
       return (messageRegister.innerHTML = 'Tu nombre es muy corto: al menos 3 caracteres');
     }
 
     if (inputPassword.value.length < 6) {
+      // eslint-disable-next-line no-return-assign
       return (messageRegister.innerHTML = 'Password como mínimo con 6 caracteres');
     }
 
