@@ -13,6 +13,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js';
 import {
   getFirestore, collection, addDoc, getDocs, query, orderBy, onSnapshot, doc, deleteDoc, updateDoc,
+// eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
