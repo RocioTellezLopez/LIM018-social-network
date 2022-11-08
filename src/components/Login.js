@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { signInWithGoogle, signInWithEmail } from '../firebase/auth.js';
 import { onNavigate } from '../main.js';
-import ModalMessage from './ModalMessage.js';
+import ModalMessage from './ModalMessage/ModalMessage.js';
 
 export const Login = () => {
   const HomeDiv = document.createElement('div');
@@ -69,28 +69,32 @@ export const Login = () => {
     const email = inputMail.value;
     const password = inputPassword.value;
 
-    signInWithEmail(email, password)
-      .then((userCredential) => {
-      // Signed in
-        // eslint-disable-next-line no-unused-vars
-        const user = userCredential.user;
-        onNavigate('/home');
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-unused-vars
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        if (errorMessage.includes('Error (auth/wrong-password)')) {
-          ModalMessage(HomeDiv, 'Contraseña Incorrecta');
-        } else if (errorMessage.includes('Error (auth/invalid-email)')) {
-          ModalMessage(HomeDiv, 'Correo inválido');
-        } else if (errorMessage.includes('Error (auth/user-not-found)')) {
-          ModalMessage(HomeDiv, 'Usuario no registrado');
-        } else {
-          ModalMessage(HomeDiv, 'Ingrese los datos faltantes');
-        }
-      });
+    if (email !== '' && password !== '') {
+      signInWithEmail(email, password)
+        .then((userCredential) => {
+        // Signed in
+          // eslint-disable-next-line no-unused-vars
+          const user = userCredential.user;
+          onNavigate('/home');
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-unused-vars
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage);
+          if (errorMessage.includes('Error (auth/wrong-password)')) {
+            ModalMessage(HomeDiv, 'Contraseña Incorrecta');
+          } else if (errorMessage.includes('Error (auth/invalid-email)')) {
+            ModalMessage(HomeDiv, 'Correo inválido');
+          } else if (errorMessage.includes('Error (auth/user-not-found)')) {
+            ModalMessage(HomeDiv, 'Usuario no registrado');
+          } else {
+            ModalMessage(HomeDiv, 'Ingrese los datos faltantes');
+          }
+        });
+    } else {
+      ModalMessage(HomeDiv, 'Ingrese los datos faltantes');
+    }
   });
 
   // imgLogoDiv.appendChild(imgLogo);
